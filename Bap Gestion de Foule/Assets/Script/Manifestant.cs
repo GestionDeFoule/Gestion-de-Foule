@@ -8,28 +8,38 @@ public class Manifestant : MonoBehaviour {
     public Mood mood = new Mood();
     Comportement currentComportement = null;
 
+    public float speed;
+    public float rotationSpeed;
+    public float ecart;
+    public float maxMagnitude;
+
+    public Rigidbody my_rgb;
+    public bool marcheIsSetUp;
+
     private void Awake()
     {
         GetComponentsInChildren<Comportement>(true, comportements);
-        Debug.Log(comportements.Count);
+        my_rgb = GetComponent<Rigidbody>();
     }
 
     // Use this for initialization
     void Start () {
-        mood.anger = 0.5f;
-        mood.lost = 0f;
-        mood.moral = 1f;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        SelectComportement();
+        currentComportement.CUpdate(this);
+    }
+
+    private void SelectComportement()
+    {
         float bestScore = 0;
 
-        foreach(Comportement comportement in comportements)
+        foreach (Comportement comportement in comportements)
         {
             float score = comportement.Evaluate(this);
-            Debug.Log(comportement.name + " : " + score);
             if (score > bestScore)
             {
                 bestScore = score;
@@ -37,5 +47,20 @@ public class Manifestant : MonoBehaviour {
             }
 
         }
-	}
+    }
+
+    private void FixedUpdate()
+    {
+        if(currentComportement != null) currentComportement.CFixedUpdate(this);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(currentComportement != null) currentComportement.CCollisionEnter(collision, this);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (currentComportement != null) currentComportement.CCollisionExit(collision, this);
+    }
 }

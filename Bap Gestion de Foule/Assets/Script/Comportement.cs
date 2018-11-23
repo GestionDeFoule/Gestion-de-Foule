@@ -10,4 +10,24 @@ public class Comportement : MonoBehaviour {
         float score = (civil.mood.anger * moodWeight.anger) + (civil.mood.moral * moodWeight.moral) + (civil.mood.lost * moodWeight.lost);
         return score;
     }
+
+    public virtual void CUpdate(Manifestant civil)
+    {
+        
+    }
+
+    public virtual void CFixedUpdate(Manifestant civil)
+    {
+
+    }
+
+    public virtual void CCollisionEnter(Collision other,Manifestant civil)
+    {
+
+    }
+
+    public virtual void CCollisionExit(Collision other, Manifestant civil)
+    {
+
+    }
 }
