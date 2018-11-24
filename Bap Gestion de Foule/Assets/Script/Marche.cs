@@ -14,20 +14,18 @@ public class Marche : Comportement {
 
 
     private int rotation; //1 : rotation horaire -1 : rotation antihoraire
-    private Transform[] waypoints;
+    private List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint = -1;
     private float antisipation;
     private float angle;
     private float nextAngle;
     private float distanceWaypoint;
+    float bestDistance = 0;
 
     // Use this for initialization
     void Awake () {
-        waypoints = new Transform[road.childCount];
-        for (int i = 0; i < road.childCount; i++)
-        {
-            waypoints[i] = road.GetChild(i);
-        }
+        road.GetComponentsInChildren<Transform>(true, waypoints);
+        waypoints.Remove(road.transform);
     }
 
     public override void CUpdate(Manifestant civil)
@@ -35,18 +33,30 @@ public class Marche : Comportement {
         base.CUpdate(civil);
         if (!civil.marcheIsSetUp)
         {
+            //set up de la marche 
+            foreach (Transform waypoint in waypoints)
+            {
+                float distance = (waypoint.position - civil.transform.position).magnitude;
+                if (bestDistance == 0) bestDistance = distance;
+                if (distance <= bestDistance) currentWaypoint = waypoints.IndexOf(waypoint)-1;
+            }
             civil.marcheIsSetUp = true;
             ChangeWay(civil);
         }
         Move(civil);
+
+        //calcule de la position du manifestant par rapport au waypoint
         if (rotation == 0) distanceWaypoint = civil.transform.InverseTransformDirection(waypoints[currentWaypoint].position - civil.transform.position).x;
         if ((civil.transform.InverseTransformDirection(waypoints[currentWaypoint].position - civil.transform.position) - Vector3.right * distanceWaypoint).magnitude < antisipation) ChangeWay(civil);
+
+        //determine quand il faut stopper la rotation
         if (angle > 0 && civil.transform.InverseTransformDirection(waypoints[currentWaypoint].position - civil.transform.position).x <= 0) rotation = 0;
         else if (angle < 0 && civil.transform.InverseTransformDirection(waypoints[currentWaypoint].position - civil.transform.position).x >= 0) rotation = 0;
     }
 
     private void Move(Manifestant civil)
     {
+        //calcul de la direction en fonction des autre manifestant
         direction = Vector3.forward;
         LayerMask layerMask = 9;
 
@@ -110,13 +120,13 @@ public class Marche : Comportement {
 
     void ChangeWay(Manifestant civil)
     {
-        if (currentWaypoint >= 0) distanceWaypoint = civil.transform.InverseTransformDirection(waypoints[currentWaypoint].position - civil.transform.position).x;
-        else distanceWaypoint = civil.transform.InverseTransformDirection(waypoints[currentWaypoint + 1].position - civil.transform.position).x;
+        //lance la rotation vers le prochain waypoint
         currentWaypoint++;
         angle = nextAngle;
         if (angle < 0) rotation = -1;
         else if (angle > 0) rotation = 1;
 
+        //calcul du prochaine angle 
         float x = waypoints[currentWaypoint + 1].position.x - waypoints[currentWaypoint].position.x;
         float z = waypoints[currentWaypoint + 1].position.z - waypoints[currentWaypoint].position.z;
         float nextEndRotation = Mathf.Rad2Deg * Mathf.Atan(x / z);
@@ -126,6 +136,7 @@ public class Marche : Comportement {
         nextAngle = nextEndRotation - nextStartRotation;
         if (Mathf.Abs(nextAngle) > 180) nextAngle -= 360;
 
+        //calcule de l'anticipation necessaire a la rotation
         float tempsRotation = Mathf.Abs(nextAngle) / civil.rotationSpeed;
         float decrementation = civil.speed / tempsRotation;
         antisipation = 0;
@@ -133,5 +144,6 @@ public class Marche : Comportement {
         {
             antisipation += civil.speed - decrementation * i;
         }
+        if (antisipation == 0) ChangeWay(civil);
     }
 }

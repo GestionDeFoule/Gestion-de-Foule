@@ -11,6 +11,7 @@ public class Comportement : MonoBehaviour {
         return score;
     }
 
+    //vitual permet de prendre en compte les modifications des enfants qui herite de comportement
     public virtual void CUpdate(Manifestant civil)
     {
         
