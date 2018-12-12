@@ -13,11 +13,6 @@ public class SkillBehaviour : MonoBehaviour {
     {
         targetPos = FindObjectOfType<MousePosition>().GetMousePosition();
 
-        Vector3 cameraPos;
-        cameraPos.x = Mathf.Lerp(transform.position.x, targetPos.x, smooth * Time.deltaTime);
-        cameraPos.z = Mathf.Lerp(transform.position.z, targetPos.z, smooth * Time.deltaTime);
-        cameraPos.y = targetPos.y;
-
-        transform.position = cameraPos;
+        transform.position = Vector3.Lerp(transform.position, targetPos, smooth*Time.fixedDeltaTime);
     }
 }
