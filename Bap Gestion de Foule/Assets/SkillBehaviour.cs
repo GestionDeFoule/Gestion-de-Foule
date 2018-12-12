@@ -15,4 +15,15 @@ public class SkillBehaviour : MonoBehaviour {
 
         transform.position = Vector3.Lerp(transform.position, targetPos, smooth*Time.fixedDeltaTime);
     }
+
+    private void OnMouseUp()
+    {
+        Effect();
+        Destroy(gameObject);
+    }
+
+    private void Effect()
+    {
+
+    }
 }
