@@ -5,14 +5,26 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour {
 
     private float panSpeed = 20f;
-    private float panBorderThickness = 100f; // taille des bordures d'écran
+    private float panBorderThickness = 20f; // taille des bordures d'écran
     public Vector2 panLimit; // limit de mouvement de la caméra
 
     private float scrollSpeed = 20f;
-    private float maxY = 20f;
-    private float minY = -20f;
+    public float maxY = 20f;
+    public float minY = -20f;
 
-    void Update () {
+    [Range(0.0f, 1.0f)]
+    public float smoothFactorXZ = 0.5f;
+    [Range(0.0f, 1.0f)]
+    public float smoothFactorY = 0.5f;
+
+    private Vector3 cameraPos;
+
+    private void Awake()
+    {
+        cameraPos = transform.position;
+    }
+
+    void FixedUpdate () {
 
         Vector3 pos = transform.position;
 
@@ -43,6 +55,10 @@ public class CameraBehaviour : MonoBehaviour {
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
 
-        transform.position = pos;
+        cameraPos.x = Mathf.Lerp(cameraPos.x, pos.x, smoothFactorXZ);
+        cameraPos.z = Mathf.Lerp(cameraPos.z, pos.z, smoothFactorXZ);
+        cameraPos.y = Mathf.Lerp(cameraPos.y, pos.y, smoothFactorY);
+
+        transform.position = cameraPos;
     }
 }
