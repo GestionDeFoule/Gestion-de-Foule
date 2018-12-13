@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour {
 
-    private float panSpeed = 20f;
+    public float panSpeed = 20f;
     private float panBorderThickness = 20f; // taille des bordures d'écran
-    public Vector2 panLimit; // limit de mouvement de la caméra
+    public Vector2 panLimitVertical; // limit de mouvement de la caméra
+    public Vector2 panLimitHorizontal;
 
     private float scrollSpeed = 20f;
     public float maxY = 20f;
@@ -51,9 +52,9 @@ public class CameraBehaviour : MonoBehaviour {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
+        pos.x = Mathf.Clamp(pos.x, panLimitHorizontal.x, panLimitHorizontal.y);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
+        pos.z = Mathf.Clamp(pos.z, panLimitVertical.x, panLimitVertical.y);
 
         cameraPos.x = Mathf.Lerp(cameraPos.x, pos.x, smoothFactorXZ);
         cameraPos.z = Mathf.Lerp(cameraPos.z, pos.z, smoothFactorXZ);

@@ -33,7 +33,7 @@ public class Marche : Comportement {
         base.CUpdate(civil);
         if (!civil.marcheIsSetUp)
         {
-            //set up de la marche 
+            //setup de la marche 
             foreach (Transform waypoint in waypoints)
             {
                 float distance = (waypoint.position - civil.transform.position).magnitude;
