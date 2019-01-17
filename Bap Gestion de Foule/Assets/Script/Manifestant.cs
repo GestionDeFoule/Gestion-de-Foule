@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manifestant : MonoBehaviour {
 
@@ -16,6 +17,9 @@ public class Manifestant : MonoBehaviour {
     public Rigidbody my_rgb;
     public bool marcheIsSetUp;
 
+    public Image tacticalImage;
+    public Canvas tacticalMap;
+
     private void Awake()
     {
         GetComponentsInChildren<Comportement>(true, comportements);
@@ -24,17 +28,20 @@ public class Manifestant : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        tacticalImage= Instantiate(tacticalImage, tacticalMap.transform);
     }
 
     // Update is called once per frame
     private void Update()
     {
+        tacticalImage.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         SelectComportement();
         currentComportement.CUpdate(this);
     }
 
     private void SelectComportement()
     {
+        //calcul le score de chaque comportement pour connaitre le plus adapté
         float bestScore = 0;
 
         foreach (Comportement comportement in comportements)

@@ -22,7 +22,6 @@ public class Marche : Comportement {
     private float distanceWaypoint;
     float bestDistance = 0;
 
-    // Use this for initialization
     void Awake () {
         road.GetComponentsInChildren<Transform>(true, waypoints);
         waypoints.Remove(road.transform);
@@ -86,6 +85,7 @@ public class Marche : Comportement {
 
     public override void CFixedUpdate(Manifestant civil)
     {
+        //deplace et rotate le manifestant
         base.CFixedUpdate(civil);
         if (direction.magnitude > civil.maxMagnitude) direction = direction.normalized * civil.maxMagnitude;
         civil.my_rgb.MovePosition(civil.transform.position + civil.transform.TransformDirection(direction * Time.deltaTime * civil.speed));

@@ -8,6 +8,7 @@ public class CameraBehaviour : MonoBehaviour {
     private float panBorderThickness = 20f; // taille des bordures d'écran
     public Vector2 panLimitVertical; // limit de mouvement de la caméra
     public Vector2 panLimitHorizontal;
+    private float startY;
 
     private float scrollSpeed = 20f;
     public float maxY = 20f;
@@ -20,9 +21,12 @@ public class CameraBehaviour : MonoBehaviour {
 
     private Vector3 cameraPos;
 
+    public GameObject tacticalMap;
+
     private void Awake()
     {
         cameraPos = transform.position;
+        startY = cameraPos.y;
     }
 
     void FixedUpdate () {
@@ -49,6 +53,18 @@ public class CameraBehaviour : MonoBehaviour {
             pos.x -= panSpeed * Time.deltaTime; 
         }
 
+        if (cameraPos.y >= maxY-5 && tacticalMap.activeSelf == false)
+        {
+            tacticalMap.SetActive(true);
+        }
+
+        if (cameraPos.y < maxY-5 && tacticalMap.activeSelf == true)
+        {
+            tacticalMap.SetActive(false);
+        }
+
+        UpdateLimit();
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
 
@@ -61,5 +77,18 @@ public class CameraBehaviour : MonoBehaviour {
         cameraPos.y = Mathf.Lerp(cameraPos.y, pos.y, smoothFactorY);
 
         transform.position = cameraPos;
+    }
+
+    private void UpdateLimit() //augmente/diminue les limites de la camera en cas de zoom/dezoom
+    {
+        float difY = startY - cameraPos.y;
+        if (difY != 0)
+        {
+            float ratio;
+            ratio = (float) Screen.height/Screen.width;
+            panLimitVertical += new Vector2(-difY*ratio , difY *ratio);
+            panLimitHorizontal += new Vector2(-difY, difY);
+            startY = cameraPos.y;
+        }
     }
 }

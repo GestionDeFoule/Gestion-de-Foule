@@ -13,7 +13,6 @@ public class MousePosition : MonoBehaviour {
         //mp.z = Camera.main.transform.position.magnitude;
         position = Camera.main.ScreenToWorldPoint(mp);
         position.y = PosY;
-        Debug.Log(position);
     }
 
     public Vector3 GetMousePosition(){
