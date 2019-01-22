@@ -136,6 +136,7 @@ CParticleAttributeList	$LOCAL$/_GlobalAttributes
 		"$LOCAL$/CParticleAttributeDeclaration_DB327BDE",
 		"$LOCAL$/CParticleAttributeDeclaration_1AC88D0A",
 		"$LOCAL$/CParticleAttributeDeclaration_1BE0CDEF",
+		"$LOCAL$/CParticleAttributeDeclaration_D410B8F9",
 	};
 	SamplerList = 
 	{
@@ -251,7 +252,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
 	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2;
 	float3 allMove = charge + desertDir + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
-	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,0.25);
+	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
 	
 	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Mood*0.5+0.5),float4(0,0,0,1),AccuAngry);
 
@@ -739,7 +740,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
 	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2;
 	float3 allMove = PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
-	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,0.25);
+	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
 	
 	Color = lerp(float4(0,0,1,1),float4(1,0.25,0.25,1),Mood*0.5+0.5);
 	
@@ -835,6 +836,15 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_DB327BDE
 {
 	AttributeName = "Speed_Grow_Mass";
 	DefaultValueF4 = float4(2.0000000e-002, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D410B8F9
+{
+	AttributeName = "Agitation";
+	DefaultValueF4 = float4(1.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	HasMax = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
