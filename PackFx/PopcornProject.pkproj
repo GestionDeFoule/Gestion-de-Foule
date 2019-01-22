@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PopcornProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <_TextureFolderPath>Textures/</_TextureFolderPath>
+  <IsLocalCache>false</IsLocalCache>
+  <RootLocation />
+  <ResourcesTypes>
+    <AbstractResourceType xsi:type="ResourceType_ParticleEffect">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.pkfx</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Mesh">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.fbx</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Material">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.hbo</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Texture">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.dds</string>
+        <string>.png</string>
+        <string>.jpg</string>
+        <string>.jpeg</string>
+        <string>.tga</string>
+        <string>.exr</string>
+        <string>.hdr</string>
+        <string>.tif</string>
+        <string>.tiff</string>
+        <string>.pkm</string>
+        <string>.pvr</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_TextureAtlas">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.pkat</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Font">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.ttf</string>
+        <string>.otf</string>
+        <string>.pkfm</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_VectorField">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.fga</string>
+        <string>.pkvf</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Sound">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.mp3</string>
+        <string>.wav</string>
+        <string>.ogg</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_SimCache">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.pksc</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Animation">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.pkan</string>
+        <string>.pksa</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Video">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.mp4</string>
+        <string>.ogv</string>
+        <string>.avi</string>
+        <string>.mov</string>
+        <string>.wmv</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Alembic">
+      <Enabled>true</Enabled>
+      <SupportedExtensions>
+        <string>.abc</string>
+      </SupportedExtensions>
+    </AbstractResourceType>
+    <AbstractResourceType xsi:type="ResourceType_Unknown">
+      <Enabled>true</Enabled>
+      <SupportedExtensions />
+    </AbstractResourceType>
+  </ResourcesTypes>
+  <CacheFolderName>Cache/</CacheFolderName>
+  <ConfigFolderName>Config/</ConfigFolderName>
+  <ThumbnailsFolderName>Editor/Thumbnails/</ThumbnailsFolderName>
+  <TemplatesFolderName>Editor/Templates/</TemplatesFolderName>
+  <TextureFolderName>Textures/</TextureFolderName>
+  <PrefferedResourceFolder_Effects>Particles/</PrefferedResourceFolder_Effects>
+  <PrefferedResourceFolder_Meshes>Alembic/</PrefferedResourceFolder_Meshes>
+  <PrefferedResourceFolder_Sounds>Sounds/</PrefferedResourceFolder_Sounds>
+  <PrefferedResourceFolder_SimCaches>SimCaches/</PrefferedResourceFolder_SimCaches>
+  <PrefferedResourceFolder_Textures>Textures/</PrefferedResourceFolder_Textures>
+  <PrefferedResourceFolder_TextureAtlases>Textures/</PrefferedResourceFolder_TextureAtlases>
+  <PrefferedResourceFolder_Fonts>Fonts/</PrefferedResourceFolder_Fonts>
+  <PrefferedResourceFolder_VectorFields>VectorFields/</PrefferedResourceFolder_VectorFields>
+  <AxisSystem>Axis_LeftHand_Y_Up</AxisSystem>
+  <UnitSystem>Unit_Meter</UnitSystem>
+  <ScaleFactor>1</ScaleFactor>
+  <AudioSampleCount>1024</AudioSampleCount>
+  <AudioSpectrumMinFreq>1</AudioSpectrumMinFreq>
+  <AudioSpectrumMaxFreq>44100</AudioSpectrumMaxFreq>
+  <AudioSpectrumHasLogScale>false</AudioSpectrumHasLogScale>
+  <PhysicsDefaultRestitution>1</PhysicsDefaultRestitution>
+  <PhysicsCombineRestitution>Combine_Multiply</PhysicsCombineRestitution>
+  <PhysicsDefaultFriction>0.5</PhysicsDefaultFriction>
+  <PhysicsCombineFriction>Combine_Average</PhysicsCombineFriction>
+  <PhysicsWindScale>1</PhysicsWindScale>
+  <PhysicsSurfaceTypeList />
+  <PhysicsCollisionFilterList />
+  <MaxSimCachePointCount>500000</MaxSimCachePointCount>
+  <MaxSimCacheFileSizeMb>500</MaxSimCacheFileSizeMb>
+  <SimCacheAttrFiltersList />
+  <PlatformSettingsList />
+  <ExternalResourcesPathList />
+  <ExcludePathList />
+  <IncludePathList />
+</PopcornProject>

@@ -1,0 +1,14 @@
+Version = 1.13.3.48102;
+COvenBakeConfig_Mesh	$LOCAL$/Resource
+{
+	MD5 = "212dc7a805cfff2988344d6ba9212a2f";
+	TexturePath = "Textures/";
+}
+CNEdEditorMesh_Data	$LOCAL$/EDITOR
+{
+	Position = float3(1.2538793e+001, 5.5829501e+000, 7.7449164e+000);
+	EulerOrientation = float3(-1.5938999e+001, 4.6970062e+001, 0.0000000e+000);
+	HmlFactory = "Cache/Meshes/TestArea.pkml/Resource";
+	ShowGrid = false;
+	EnableShadows = false;
+}
