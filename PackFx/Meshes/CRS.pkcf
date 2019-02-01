@@ -1,0 +1,12 @@
+Version = 1.13.3.48349;
+COvenBakeConfig_Mesh	$LOCAL$/Resource
+{
+	MD5 = "1352fa6220c291bb91cf9e9af66bd92b";
+	TexturePath = "Textures/";
+	ImportAnimation = true;
+	ImportSkeleton = true;
+}
+CNEdEditorMesh_Data	$LOCAL$/EDITOR
+{
+	HmlFactory = "Cache/Meshes/CRS.pkml/Resource";
+}

@@ -570,12 +570,18 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: PK_UNSAFE_CODE_ENABLED
+    4: PK_UNSAFE_CODE_ENABLED
+    7: PK_UNSAFE_CODE_ENABLED
+    19: PK_UNSAFE_CODE_ENABLED
+    21: PK_UNSAFE_CODE_ENABLED
+    27: PK_UNSAFE_CODE_ENABLED
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
   incrementalIl2cppBuild: {}
-  allowUnsafeCode: 0
+  allowUnsafeCode: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}

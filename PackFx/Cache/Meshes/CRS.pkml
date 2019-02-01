@@ -1,0 +1,47 @@
+Version = 1.13.3.48349;
+CHmlFactory	$LOCAL$/Resource
+{
+	MeshTree = "$LOCAL$/CHmlMeshTreeNode_LOD_EFD84286";
+	Skins = 
+	{
+		"$LOCAL$/CHmlSkinDescriptor_C8984E18",
+	};
+}
+CHmlMeshTreeNode_LOD	$LOCAL$/CHmlMeshTreeNode_LOD_EFD84286
+{
+	LODs = 
+	{
+		"$LOCAL$/CHmlMeshTreeNode_ModelRef_A5B930C1",
+	};
+}
+CHmlMeshTreeNode_ModelRef	$LOCAL$/CHmlMeshTreeNode_ModelRef_A5B930C1
+{
+	MeshResourcePath = "Meshes/CRS.pkmm";
+}
+CHmlSkinDescriptor	$LOCAL$/CHmlSkinDescriptor_C8984E18
+{
+	PublishedName = "Default";
+	Materials = 
+	{
+		"$LOCAL$/CHmlSkinMaterial_A4977ABB",
+	};
+}
+CMaterialProxy	$LOCAL$/Material_0
+{
+	VirtualName = "palette";
+	BaseMaterial = "Materials/Library/Models.hbo/Opaque";
+	Fields = 
+	{
+		"$LOCAL$/Material_0_Field_0",
+	};
+}
+CHmlSkinMaterial	$LOCAL$/CHmlSkinMaterial_A4977ABB
+{
+	VirtualName = "palette";
+	MaterialProxy = "$LOCAL$/Material_0";
+}
+CMaterialProxyField	$LOCAL$/Material_0_Field_0
+{
+	FieldName = "DiffuseTexture";
+	ValTexturePath = "Textures/Meshes/CRS.png";
+}

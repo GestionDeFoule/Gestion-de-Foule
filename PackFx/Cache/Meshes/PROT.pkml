@@ -1,0 +1,47 @@
+Version = 1.13.3.48349;
+CHmlFactory	$LOCAL$/Resource
+{
+	MeshTree = "$LOCAL$/CHmlMeshTreeNode_LOD_BA039E0D";
+	Skins = 
+	{
+		"$LOCAL$/CHmlSkinDescriptor_AF6906A7",
+	};
+}
+CHmlMeshTreeNode_LOD	$LOCAL$/CHmlMeshTreeNode_LOD_BA039E0D
+{
+	LODs = 
+	{
+		"$LOCAL$/CHmlMeshTreeNode_ModelRef_812D5F54",
+	};
+}
+CHmlMeshTreeNode_ModelRef	$LOCAL$/CHmlMeshTreeNode_ModelRef_812D5F54
+{
+	MeshResourcePath = "Meshes/PROT.pkmm";
+}
+CHmlSkinDescriptor	$LOCAL$/CHmlSkinDescriptor_AF6906A7
+{
+	PublishedName = "Default";
+	Materials = 
+	{
+		"$LOCAL$/CHmlSkinMaterial_962646F6",
+	};
+}
+CMaterialProxy	$LOCAL$/Material_0
+{
+	VirtualName = "palette";
+	BaseMaterial = "Materials/Library/Models.hbo/Opaque";
+	Fields = 
+	{
+		"$LOCAL$/Material_0_Field_0",
+	};
+}
+CHmlSkinMaterial	$LOCAL$/CHmlSkinMaterial_962646F6
+{
+	VirtualName = "palette";
+	MaterialProxy = "$LOCAL$/Material_0";
+}
+CMaterialProxyField	$LOCAL$/Material_0_Field_0
+{
+	FieldName = "DiffuseTexture";
+	ValTexturePath = "Meshes/PROT.png";
+}

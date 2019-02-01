@@ -1,9 +1,14 @@
-Version = 1.13.3.48102;
+Version = 1.13.3.48349;
 Generator = EDITOR;
 CParticleEffect	$LOCAL$/Resource
 {
 	EditorInfosPosition = int2(73, 52);
 	OnSpawn = "$LOCAL$/Spawner";
+	LayerGroups = 
+	{
+		"$LOCAL$/Gaz",
+		"$LOCAL$/Smoke",
+	};
 	CustomAttributes = "$LOCAL$/_GlobalAttributes";
 	SpatialLayers = "$LOCAL$/CParticleSpatialLayerList_A8E98A06";
 }
@@ -12,6 +17,8 @@ CNEdEditorParticle_Data	$LOCAL$/EDITOR
 	EditorInfosPosition = int2(413, -144);
 	Position = float3(-1.2899927e+001, 1.5867531e+001, -3.6314294e+000);
 	EulerOrientation = float3(-7.4137993e+001, -7.7923813e+001, 0.0000000e+000);
+	PostFx_EnableDistortion = false;
+	PostFx_EnableVignetting = false;
 	BackdropToShapeSamplerMapping = 
 	{
 		"$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_7E88D3AD",
@@ -27,7 +34,8 @@ CActionFactoryParticleSpawnerBase	$LOCAL$/Protest
 {
 	EditorInfosPosition = int2(-288, -61);
 	Descriptor = "$LOCAL$/CParticleDescriptor_AE135B2A";
-	SpawnCount = 5.0000000e+002;
+	SpawnCountMode = TotalParticleCount;
+	FluxFactorExpression = "Protest_Count";
 }
 CParticleDescriptor	$LOCAL$/CParticleDescriptor_AE135B2A
 {
@@ -39,19 +47,18 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_AE135B2A
 		"$LOCAL$/CParticleFieldDeclaration_5F1A0D53",
 		"$LOCAL$/CParticleFieldDeclaration_8B35CC3B",
 		"$LOCAL$/CParticleFieldDeclaration_CAE84747",
-		"$LOCAL$/CParticleFieldDeclaration_687F4BED",
-		"$LOCAL$/CParticleFieldDeclaration_22B9B2B4",
 		"$LOCAL$/CParticleFieldDeclaration_EA7F0756",
 		"$LOCAL$/CParticleFieldDeclaration_179626A3",
-		"$LOCAL$/CParticleFieldDeclaration_C7806AF1",
 		"$LOCAL$/CParticleFieldDeclaration_5AFEF50A",
 		"$LOCAL$/CParticleFieldDeclaration_5868D395",
 		"$LOCAL$/CParticleFieldDeclaration_58207F7C",
 		"$LOCAL$/CParticleFieldDeclaration_194CF6B3",
 		"$LOCAL$/CParticleFieldDeclaration_C37DB1F2",
 		"$LOCAL$/CParticleFieldDeclaration_6341DFF6",
-		"$LOCAL$/CParticleFieldDeclaration_011B62F1",
 		"$LOCAL$/CParticleFieldDeclaration_75EF577C",
+		"$LOCAL$/CParticleFieldDeclaration_3D1455F1",
+		"$LOCAL$/CParticleFieldDeclaration_1B42C308",
+		"$LOCAL$/CParticleFieldDeclaration_2B9155C6",
 	};
 	Samplers = 
 	{
@@ -99,6 +106,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_5566F5E7
 	AxisSide = scene.axisSide();
 	SizeRadar = Size * rand(2,8);
 	ColorRadar = 0.1;
+	Mask = ninja;
 }
 ";
 }
@@ -107,6 +115,7 @@ CParticleState	$LOCAL$/CParticleState_3AF8190E
 	EditorInfosPosition = int2(-508, 65);
 	Evolvers = 
 	{
+		"$LOCAL$/Script_3",
 		"$LOCAL$/CParticleEvolver_Physics_36D6D4BD",
 		"$LOCAL$/Script_1",
 		"$LOCAL$/Evolver_1",
@@ -134,9 +143,20 @@ CParticleAttributeList	$LOCAL$/_GlobalAttributes
 		"$LOCAL$/CParticleAttributeDeclaration_46205408",
 		"$LOCAL$/CParticleAttributeDeclaration_FA4BFF6B",
 		"$LOCAL$/CParticleAttributeDeclaration_DB327BDE",
-		"$LOCAL$/CParticleAttributeDeclaration_1AC88D0A",
-		"$LOCAL$/CParticleAttributeDeclaration_1BE0CDEF",
 		"$LOCAL$/CParticleAttributeDeclaration_D410B8F9",
+		"$LOCAL$/CParticleAttributeDeclaration_1AC88D0A",
+		"$LOCAL$/CParticleAttributeDeclaration_D0CA7CD7",
+		"$LOCAL$/CParticleAttributeDeclaration_D67E6FF7",
+		"$LOCAL$/CParticleAttributeDeclaration_1BE0CDEF",
+		"$LOCAL$/CParticleAttributeDeclaration_BA3CE0E6",
+		"$LOCAL$/CParticleAttributeDeclaration_6270FEA1",
+		"$LOCAL$/CParticleAttributeDeclaration_F92A76A9",
+		"$LOCAL$/CParticleAttributeDeclaration_2274C82B",
+		"$LOCAL$/CParticleAttributeDeclaration_D9034178",
+		"$LOCAL$/CParticleAttributeDeclaration_341191B1",
+		"$LOCAL$/CParticleAttributeDeclaration_BBE6C9C8",
+		"$LOCAL$/CParticleAttributeDeclaration_4AC3D21D",
+		"$LOCAL$/CParticleAttributeDeclaration_3AD22501",
 	};
 	SamplerList = 
 	{
@@ -170,7 +190,7 @@ CNEdEditorBackdrop_Light	$LOCAL$/_Backdrop_Light
 {
 	LayerName = "GlobalLight";
 	Position = float3(1.1233553e+002, 2.8270447e+002, 2.2297581e+002);
-	EulerOrientation = float3(-4.8550171e+001, 2.6739031e+001, -9.5600376e-007);
+	EulerOrientation = float3(2.7000000e+002, 4.5000000e+001, 0.0000000e+000);
 	LightFactory = "$LOCAL$/_Backdrop_Light_Factory";
 	LightDistance = 3.7717276e+002;
 }
@@ -198,6 +218,7 @@ CParticleSpatialLayerList	$LOCAL$/CParticleSpatialLayerList_A8E98A06
 		"$LOCAL$/CParticleSpatialDescriptor_01784E41",
 		"$LOCAL$/CParticleSpatialDescriptor_50098991",
 		"$LOCAL$/CParticleSpatialDescriptor_922EFBDD",
+		"$LOCAL$/CParticleSpatialDescriptor_D3040F64",
 	};
 }
 CParticleSpatialDescriptor	$LOCAL$/CParticleSpatialDescriptor_01784E41
@@ -218,24 +239,31 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	Expression = "function void	Eval()
 {
 
+	float3 smokeGaz = spatialLayers.SL_Smoke.Position.closest(Position, SizeRadar*4);
+	smokeGaz = select(0,normalize(Position-smokeGaz),isfinite(smokeGaz)) * select(1,0.1,Mask_Protest_Percent>Mask);
+
 	InitialPos = rotate(float3(pow(SLR,0.5),0,0),float3(0,1,0),R*pi*2)*2*Protest_Grouping;
 	float spfakemove = scene.Time*0.75;
 	float3 fakeMove = float3(sin(spfakemove),0,cos(spfakemove))*4*0;
-	Target = ProtestTarget.samplePosition() + fakeMove;
+	float3 Target = ProtestTarget.samplePosition() + fakeMove;
 	float3 realTarget = Target + InitialPos - Position;
 		
 	float moodCRS= spatialLayers.SL_CRS.Mood.average(Position, SizeRadar*1.5);
 	float moodProtest = spatialLayers.SL_Protest.Mood.average(Position, SizeRadar);
-	Mood += select(0,moodProtest*dt,isfinite(moodProtest))*(1-saturate(length(realTarget*2))) + 1.5*select(0,abs(moodCRS)*dt,isfinite(moodCRS)) -dt*length(realTarget)*0.01;
+	Mood += select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0) + select(0,moodProtest*dt,isfinite(moodProtest))*(1-saturate(length(realTarget*2))) + 1.5*select(0,abs(moodCRS)*dt,isfinite(moodCRS)) -dt*length(realTarget)*0.01;
 	Mood = clamp(Mood,-1,1);
 	
 	AccuAngry+= select(0,dt*Speed_Weak_Mass,Mood==1 && isfinite(moodCRS));
-	AccuAngry = select(saturate(AccuAngry),0,Mood==-1 && Recall_Deserter==1 || TimeDesert==1 && Charge==1);
+	AccuAngry = select(saturate(AccuAngry),0,Mood==-1 && Recall_Deserter==1 || TimeDesert==1 && Charge_Protest==1);
 	
 	TimeDesert+= select(0,dt*Speed_Grow_Mass,AccuAngry==1);
 	TimeDesert = select(saturate(TimeDesert),0,TimeDesert==1);
-	
-	float3 charge = select(0,safe_normalize(CRSTarget.samplePosition()+InitialPos-Position),Charge==1 && Mood>Treshold_Mood_Charge && AccuAngry!=1);
+
+	float3 posCRS = CRSTarget.samplePosition();
+	float3 nearCRS = spatialLayers.SL_CRS.Position.closest(Position, SizeRadar);
+	nearCRS = select(posCRS,nearCRS,isfinite(nearCRS));
+	float3 charge = select(0,safe_normalize(posCRS+InitialPos-Position),Charge_Protest==1 && Mood>Treshold_Mood_Action_Protest && AccuAngry!=1);
+	float3 circling	= select(0,safe_normalize(nearCRS+InitialPos-Position),Circling_Protest==1 && Mood>Treshold_Mood_Action_Protest && AccuAngry!=1);
 	
 	float3 desertDir = rotate(safe_normalize(ProtestTarget.samplePosition()-CRSTarget.samplePosition()),float3(0,1,0),noise(scene.Time+SLR*100)*pi*0.5)*select(0,1,AccuAngry==1);
 
@@ -250,14 +278,18 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	vecTarget += safe_normalize(realTarget)*dt*4;
 	vecTarget = safe_normalize(vecTarget);
 	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
-	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2;
-	float3 allMove = charge + desertDir + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
+	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2 * saturate(0.25*length(ProtestTarget.samplePosition()-Position));
+	float3 allMove = smokeGaz + circling + charge + desertDir + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
 	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
 	
-	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Mood*0.5+0.5),float4(0,0,0,1),AccuAngry);
-
+	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Mood*0.5+0.5),float4(0,0,0,1),AccuAngry)*InfosVisibility;
+	ColorRadar = Color*0.2;
 	
 	Position = Position.x0z;
+	
+	Direction = normalize(Position-prePos);
+	
+	MeshId = ActivateVoxelCharacter;
 }
 ";
 }
@@ -349,7 +381,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-7.3438244e+000, 2.1934513e-005, 1.8433113e+000);
+	Position = float3(-7.3438239e+000, 2.1934509e-005, 1.8433110e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -436,17 +468,8 @@ CParticleRenderer_List	$LOCAL$/CParticleRenderer_List_1A58D602
 	{
 		"$LOCAL$/CParticleRenderer_Billboard_9136D2F4",
 		"$LOCAL$/CParticleRenderer_Billboard_7BAEC76B",
+		"$LOCAL$/CParticleRenderer_Mesh_4CD7E3DB",
 	};
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_687F4BED
-{
-	FieldName = "DirectionDebug";
-	FieldType = float3;
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_22B9B2B4
-{
-	FieldName = "ColorDebug";
-	FieldType = float4;
 }
 CNEdEditorBackdrop_Model3D	$LOCAL$/CNEdEditorBackdrop_Model3D_2AD82D87
 {
@@ -478,11 +501,6 @@ CParticleSamplerProceduralTurbulence	$LOCAL$/CParticleSamplerProceduralTurbulenc
 CNEdEditorParticle_BackdropToSamplerVectorField	$LOCAL$/CNEdEditorParticle_BackdropToSamplerVectorField_482D43A7
 {
 	SourceSamplerVectorField = "$LOCAL$/CParticleSamplerProceduralTurbulence_29856854";
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_C7806AF1
-{
-	FieldName = "Target";
-	FieldType = float3;
 }
 CParticleRenderer_Billboard	$LOCAL$/CParticleRenderer_Billboard_7BAEC76B
 {
@@ -529,16 +547,23 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_0FEC68D1
 		"$LOCAL$/CParticleFieldDeclaration_91A726CF",
 		"$LOCAL$/CParticleFieldDeclaration_8A39563E",
 		"$LOCAL$/CParticleFieldDeclaration_30B972D9",
-		"$LOCAL$/CParticleFieldDeclaration_0ED62E10",
-		"$LOCAL$/CParticleFieldDeclaration_86525E13",
 		"$LOCAL$/CParticleFieldDeclaration_C8917CD2",
 		"$LOCAL$/CParticleFieldDeclaration_99CE92FD",
-		"$LOCAL$/CParticleFieldDeclaration_16D7FF04",
 		"$LOCAL$/CParticleFieldDeclaration_E7034817",
 		"$LOCAL$/CParticleFieldDeclaration_4F73ED26",
 		"$LOCAL$/CParticleFieldDeclaration_1472DFE1",
 		"$LOCAL$/CParticleFieldDeclaration_008E1BB8",
 		"$LOCAL$/CParticleFieldDeclaration_0ED488DB",
+		"$LOCAL$/CParticleFieldDeclaration_9B47DF63",
+		"$LOCAL$/CParticleFieldDeclaration_EF197062",
+		"$LOCAL$/CParticleFieldDeclaration_5D5EA3B6",
+		"$LOCAL$/CParticleFieldDeclaration_212635FD",
+		"$LOCAL$/CParticleFieldDeclaration_DFC74633",
+		"$LOCAL$/CParticleFieldDeclaration_7CD67772",
+	};
+	CustomEvents = 
+	{
+		"$LOCAL$/CParticleEventDeclaration_89669620",
 	};
 	Samplers = 
 	{
@@ -557,6 +582,7 @@ CParticleRenderer_List	$LOCAL$/CParticleRenderer_List_7180DF68
 	{
 		"$LOCAL$/CParticleRenderer_Billboard_F587BE4B",
 		"$LOCAL$/CParticleRenderer_Billboard_96F194DC",
+		"$LOCAL$/CParticleRenderer_Mesh_9DDFBD10",
 	};
 }
 CParticleRenderer_Billboard	$LOCAL$/CParticleRenderer_Billboard_F587BE4B
@@ -597,16 +623,6 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_30B972D9
 	FieldName = "vecTarget";
 	FieldType = float3;
 }
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_0ED62E10
-{
-	FieldName = "DirectionDebug";
-	FieldType = float3;
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_86525E13
-{
-	FieldName = "ColorDebug";
-	FieldType = float4;
-}
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_C8917CD2
 {
 	FieldName = "Mood";
@@ -614,11 +630,6 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_C8917CD2
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_99CE92FD
 {
 	FieldName = "InitialPos";
-	FieldType = float3;
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_16D7FF04
-{
-	FieldName = "Target";
 	FieldType = float3;
 }
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_E7034817
@@ -671,6 +682,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_8196DD85
 	EditorInfosPosition = int2(-508, 22);
 	Expression = "function void	Eval()
 {
+	ID = spawner.EmittedCount;
 	SLR = spawner.LifeRatio;
 	R = ninja;
 	Life = infinity;
@@ -690,6 +702,7 @@ CParticleState	$LOCAL$/CParticleState_83B1582C
 	EditorInfosPosition = int2(-508, 65);
 	Evolvers = 
 	{
+		"$LOCAL$/CParticleEvolver_Script_9815EDB0",
 		"$LOCAL$/CParticleEvolver_Physics_84C5845F",
 		"$LOCAL$/CParticleEvolver_Script_92B13B0E",
 		"$LOCAL$/CParticleEvolver_SpatialInsertion_78104860",
@@ -718,13 +731,20 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	InitialPos = rotate(float3(pow(SLR,0.5),0,0),float3(0,1,0),R*pi*2)*2*CRS_Grouping;
 	float spfakemove = -scene.Time*0.75;
 	float3 fakeMove = float3(sin(spfakemove),0,cos(spfakemove))*4*0;
-	Target = CRSTarget.samplePosition() + fakeMove;
+	float3 Target = CRSTarget.samplePosition() + fakeMove;
 	float3 realTarget = Target + InitialPos - Position;
 
 	float moodCRS= spatialLayers.SL_CRS.Mood.average(Position, SizeRadar);
 	float moodProtest = spatialLayers.SL_Protest.Mood.average(Position, SizeRadar*1.5);
 	Mood += select(0,moodCRS*dt,isfinite(moodCRS))*(1-saturate(length(realTarget*2))) + 1.5*select(0,abs(moodProtest)*dt,isfinite(moodProtest)) -dt*length(realTarget)*0.01;
 	Mood = clamp(Mood,-1,1);
+	
+	float3 posProtest = ProtestTarget.samplePosition();
+	float3 nearProtest = spatialLayers.SL_Protest.Position.closest(Position, SizeRadar);
+	nearProtest = select(posProtest,nearProtest,isfinite(nearProtest));
+	float3 charge = select(0,safe_normalize(posProtest+InitialPos-Position),Charge_CRS==1);
+	float3 circling	= select(0,safe_normalize(nearProtest+InitialPos-Position),Circling_CRS==1);
+	
 
 	float4 avoidWall = scene.intersect(Position, rotate(normalize(Target + InitialPos - Position),float3(0,1,0),rand(-pi,pi)*0.5), 0.5);
 	avoidWall = select(0, avoidWall , isfinite(avoidWall));
@@ -738,13 +758,24 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	vecTarget += safe_normalize(Target + InitialPos - Position)*dt*4;
 	vecTarget = safe_normalize(vecTarget);
 	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
-	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2;
-	float3 allMove = PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
+	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2* saturate(0.25*length(CRSTarget.samplePosition()-Position));
+	float3 allMove = circling + charge + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
 	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
 	
-	Color = lerp(float4(0,0,1,1),float4(1,0.25,0.25,1),Mood*0.5+0.5);
+	Color = lerp(float4(0,0,1,1),float4(1,0.25,0.25,1),Mood*0.5+0.5)*InfosVisibility;
+	ColorRadar = Color*0.2;
 	
 	Position = Position.x0z;
+	
+	Direction = normalize(Position-prePos);
+	
+	throwDir = normalize(ProtestTarget.samplePosition()-Position);
+	
+	gaz = select(0,1,Gaz_CRS==1 && gaz==0);
+	Gaz.trigger(gaz == 1 && ID == floor((scene.Time*CRS_Count)%CRS_Count));
+	gaz = select(1,0,Gaz_CRS==0);
+	
+	MeshId = ActivateVoxelCharacter;
 }
 ";
 }
@@ -757,11 +788,13 @@ CActionFactoryParticleSpawnerBase	$LOCAL$/CRS
 {
 	EditorInfosPosition = int2(-288, -61);
 	Descriptor = "$LOCAL$/CParticleDescriptor_0FEC68D1";
-	SpawnCount = 5.0000000e+002;
+	SpawnCountMode = TotalParticleCount;
+	FluxFactorExpression = "CRS_Count";
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_0B434054
 {
 	AttributeName = "Start_Angry_Protest";
+	DefaultValueF4 = float4(5.0000000e-001, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	HasMax = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
@@ -770,6 +803,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_0B434054
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_C353FBA7
 {
 	AttributeName = "Start_Angry_CRS";
+	DefaultValueF4 = float4(2.5000000e-001, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	HasMax = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
@@ -788,10 +822,6 @@ CParticleEvolver_SpatialInsertion	$LOCAL$/Evolver_3
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_6341DFF6
 {
 	FieldName = "AccuAngry";
-}
-CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_011B62F1
-{
-	FieldName = "RecoverTime";
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_46205408
 {
@@ -812,7 +842,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_FA4BFF6B
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_1AC88D0A
 {
-	AttributeName = "Charge";
+	AttributeName = "Charge_Protest";
 	AttributeType = int;
 	HasMin = true;
 	HasMax = true;
@@ -825,7 +855,7 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_75EF577C
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_1BE0CDEF
 {
-	AttributeName = "Treshold_Mood_Charge";
+	AttributeName = "Treshold_Mood_Action_Protest";
 	DefaultValueF4 = float4(5.0000000e-001, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	HasMax = true;
@@ -844,6 +874,402 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_DB327BDE
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D410B8F9
 {
 	AttributeName = "Agitation";
+	DefaultValueF4 = float4(1.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D0CA7CD7
+{
+	AttributeName = "Circling_Protest";
+	AttributeType = int;
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_BA3CE0E6
+{
+	AttributeName = "Charge_CRS";
+	AttributeType = int;
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_6270FEA1
+{
+	AttributeName = "Circling_CRS";
+	AttributeType = int;
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D9034178
+{
+	AttributeName = "Treshold_Mood_Action_CRS";
+	DefaultValueF4 = float4(8.9999998e-001, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CActionFactoryParticleSpawnerBase	$LOCAL$/Gaz
+{
+	Descriptor = "$LOCAL$/CParticleDescriptor_D2F9C19B";
+}
+CParticleDescriptor	$LOCAL$/CParticleDescriptor_D2F9C19B
+{
+	Renderer = "$LOCAL$/CParticleRenderer_Billboard_2DA731EC";
+	CustomFields = 
+	{
+		"$LOCAL$/CParticleFieldDeclaration_D8B5E045",
+		"$LOCAL$/CParticleFieldDeclaration_AC6DC214",
+		"$LOCAL$/CParticleFieldDeclaration_A56BC067",
+	};
+	CustomEvents = 
+	{
+		"$LOCAL$/CParticleEventDeclaration_54C37C70",
+	};
+	VirtualParentFields = 
+	{
+		"$LOCAL$/CParticleFieldDeclaration_5C84C5CD",
+	};
+	SpawnEvaluator = "$LOCAL$/CCompilerSyntaxNodeExpression_42BB62FA";
+	States = 
+	{
+		"$LOCAL$/CParticleState_E75F811F",
+	};
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_42BB62FA
+{
+	Expression = "function void	Eval()
+{
+	throwDir = parent.throwDir;
+	Life = 10;
+	Size = 0.09;
+	Velocity = (float3(0,1,0) + throwDir*2)*Gaz_PowerThrow;
+	Color = float4(1.0);
+}
+";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_D8B5E045
+{
+	FieldName = "Color";
+	FieldType = float4;
+}
+CParticleRenderer_Billboard	$LOCAL$/CParticleRenderer_Billboard_2DA731EC
+{
+	CustomName = "Billboard";
+	BillboardingMaterial = AlphaBlend;
+	Diffuse = "Textures/BallDiffuse.png";
+}
+CParticleState	$LOCAL$/CParticleState_E75F811F
+{
+	Evolvers = 
+	{
+		"$LOCAL$/CParticleEvolver_Physics_D1E096CE",
+	};
+}
+CParticleEvolver_Physics	$LOCAL$/CParticleEvolver_Physics_D1E096CE
+{
+	CustomName = "Physics";
+	ConstantAcceleration = float3(0.0000000e+000, -2.0000000e+000, 0.0000000e+000);
+	Drag = 1.0000000e+000;
+	WorldInteractionMode = OneWay;
+	BouncesBeforeDeath = 10;
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_F92A76A9
+{
+	AttributeName = "Gaz_CRS";
+	AttributeType = int;
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleEventDeclaration	$LOCAL$/CParticleEventDeclaration_89669620
+{
+	EventName = "Gaz";
+	EventAction = "$LOCAL$/Gaz";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_9B47DF63
+{
+	FieldName = "gaz";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_EF197062
+{
+	FieldName = "throwDir";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_5C84C5CD
+{
+	FieldName = "throwDir";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_AC6DC214
+{
+	FieldName = "throwDir";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_A56BC067
+{
+	FieldName = "Velocity";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_5D5EA3B6
+{
+	FieldName = "ID";
+	FieldType = int;
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_341191B1
+{
+	AttributeName = "CRS_Count";
+	AttributeType = int;
+	DefaultValueI4 = int4(500, 0, 0, 0);
+	HasMin = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_BBE6C9C8
+{
+	AttributeName = "Protest_Count";
+	AttributeType = int;
+	DefaultValueI4 = int4(500, 0, 0, 0);
+	HasMin = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_2274C82B
+{
+	AttributeName = "Gaz_PowerThrow";
+	DefaultValueF4 = float4(4.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	HasMin = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CActionFactoryParticleSpawnerBase	$LOCAL$/Smoke
+{
+	Descriptor = "$LOCAL$/CParticleDescriptor_1008A4CA";
+	DurationInSeconds = 1.0000000e+001;
+	SpawnCount = 1.0000000e+001;
+}
+CParticleDescriptor	$LOCAL$/CParticleDescriptor_1008A4CA
+{
+	Renderer = "$LOCAL$/CParticleRenderer_Billboard_60415AAF";
+	CustomFields = 
+	{
+		"$LOCAL$/CParticleFieldDeclaration_1F2D813C",
+		"$LOCAL$/CParticleFieldDeclaration_1BE89BF3",
+	};
+	Samplers = 
+	{
+		"$LOCAL$/CParticleSamplerProceduralTurbulence_CB03A032",
+	};
+	SpawnEvaluator = "$LOCAL$/CCompilerSyntaxNodeExpression_35185E55";
+	States = 
+	{
+		"$LOCAL$/CParticleState_7563A79E",
+	};
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_35185E55
+{
+	Expression = "function void	Eval()
+{
+	Life = 10;
+	Size = 0.1;
+	Velocity = float3(0,0.1,0) + vrand().x0z*0.5;
+	Color = float4(1.0);
+}
+";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_1F2D813C
+{
+	FieldName = "Color";
+	FieldType = float4;
+}
+CParticleRenderer_Billboard	$LOCAL$/CParticleRenderer_Billboard_60415AAF
+{
+	CustomName = "Billboard";
+	BillboardingMaterial = AlphaBlend;
+	Diffuse = "Textures/BallDiffuse.png";
+}
+CParticleState	$LOCAL$/CParticleState_7563A79E
+{
+	Evolvers = 
+	{
+		"$LOCAL$/CParticleEvolver_Physics_ACFF6FB9",
+		"$LOCAL$/Script_2",
+		"$LOCAL$/Evolver_4",
+	};
+}
+CParticleEvolver_Physics	$LOCAL$/CParticleEvolver_Physics_ACFF6FB9
+{
+	CustomName = "Physics";
+	Drag = 5.0000000e-001;
+	VelocityFieldSampler = "Turb_2";
+}
+CParticleEventDeclaration	$LOCAL$/CParticleEventDeclaration_54C37C70
+{
+	EventName = "OnDeath";
+	EventAction = "$LOCAL$/Smoke";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_1BE89BF3
+{
+	FieldName = "Velocity";
+	FieldType = float3;
+}
+CParticleSamplerProceduralTurbulence	$LOCAL$/CParticleSamplerProceduralTurbulence_CB03A032
+{
+	SamplerName = "Turb_2";
+	TimeScale = 5.0000000e-001;
+}
+CParticleEvolver_Script	$LOCAL$/Script_2
+{
+	CustomName = "Script";
+	Expression = "$LOCAL$/CCompilerSyntaxNodeExpression_822FC9DD";
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_822FC9DD
+{
+	Expression = "function void	Eval()
+{
+	Size = pow(LifeRatio,0.5);
+	Color = float4(1,1,1,(1-pow(LifeRatio,4))*0.25);
+}
+";
+}
+CParticleSpatialDescriptor	$LOCAL$/CParticleSpatialDescriptor_D3040F64
+{
+	LayerName = "SL_Smoke";
+}
+CParticleEvolver_SpatialInsertion	$LOCAL$/Evolver_4
+{
+	CustomName = "SpatialInsertion";
+	SpatialLayer = "$LOCAL$/CParticleSpatialDescriptor_D3040F64";
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D67E6FF7
+{
+	AttributeName = "Mask_Protest_Percent";
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleRenderer_Mesh	$LOCAL$/CParticleRenderer_Mesh_9DDFBD10
+{
+	CustomName = "Mesh";
+	Meshes = 
+	{
+		"$LOCAL$/CParticleRenderer_Mesh_Descriptor_E50B6637",
+		"$LOCAL$/CParticleRenderer_Mesh_Descriptor_99439913",
+	};
+	StaticOrientationOffset = float3(0.0000000e+000, 1.8000000e+002, 0.0000000e+000);
+	ForwardAxisField = "Direction";
+	UpAxisField = "AxisUp";
+}
+CParticleRenderer_Mesh_Descriptor	$LOCAL$/CParticleRenderer_Mesh_Descriptor_99439913
+{
+	Mesh = "Meshes/CRS.fbx";
+	CastShadow = true;
+	Diffuse = "Meshes/CRS.png";
+	CustomName = "Mesh_Descriptor";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_212635FD
+{
+	FieldName = "Size";
+}
+CParticleRenderer_Mesh_Descriptor	$LOCAL$/CParticleRenderer_Mesh_Descriptor_4A594AB8
+{
+	Mesh = "Meshes/PROT.fbx";
+	CastShadow = true;
+	Diffuse = "Meshes/PROT.png";
+	CustomName = "Mesh_Descriptor";
+}
+CParticleRenderer_Mesh	$LOCAL$/CParticleRenderer_Mesh_4CD7E3DB
+{
+	CustomName = "Mesh";
+	Meshes = 
+	{
+		"$LOCAL$/CParticleRenderer_Mesh_Descriptor_A8E89CA4",
+		"$LOCAL$/CParticleRenderer_Mesh_Descriptor_4A594AB8",
+	};
+	StaticOrientationOffset = float3(0.0000000e+000, 1.8000000e+002, 0.0000000e+000);
+	ForwardAxisField = "Direction";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_3D1455F1
+{
+	FieldName = "Direction";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_1B42C308
+{
+	FieldName = "prePos";
+	FieldType = float3;
+}
+CParticleEvolver_Script	$LOCAL$/Script_3
+{
+	CustomName = "Script";
+	Expression = "$LOCAL$/CCompilerSyntaxNodeExpression_3D1EC40A";
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_3D1EC40A
+{
+	Expression = "function void	Eval()
+{
+	prePos = Position;
+}
+";
+}
+CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_F860CBF9
+{
+	Expression = "function void	Eval()
+{
+	prePos = Position;
+}
+";
+}
+CParticleEvolver_Script	$LOCAL$/CParticleEvolver_Script_9815EDB0
+{
+	CustomName = "Script";
+	Expression = "$LOCAL$/CCompilerSyntaxNodeExpression_F860CBF9";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_DFC74633
+{
+	FieldName = "prePos";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_7CD67772
+{
+	FieldName = "Direction";
+	FieldType = float3;
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_4AC3D21D
+{
+	AttributeName = "ActivateVoxelCharacter";
+	AttributeType = int;
+	HasMin = true;
+	HasMax = true;
+	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
+	MaxValueI4 = int4(1, 10, 10, 10);
+}
+CParticleRenderer_Mesh_Descriptor	$LOCAL$/CParticleRenderer_Mesh_Descriptor_A8E89CA4
+{
+	Material = Additive;
+	CustomName = "Mesh_Descriptor";
+}
+CParticleRenderer_Mesh_Descriptor	$LOCAL$/CParticleRenderer_Mesh_Descriptor_E50B6637
+{
+	Material = Additive;
+	CustomName = "Mesh_Descriptor";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_2B9155C6
+{
+	FieldName = "Mask";
+}
+CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_3AD22501
+{
+	AttributeName = "InfosVisibility";
 	DefaultValueF4 = float4(1.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	HasMax = true;
