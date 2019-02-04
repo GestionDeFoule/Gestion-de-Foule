@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1109,6 +1109,7 @@ GameObject:
   - component: {fileID: 108704946}
   - component: {fileID: 108704945}
   - component: {fileID: 108704948}
+  - component: {fileID: 108704949}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1169,13 +1170,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 108704944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.39878002, y: -0, z: -0, w: 0.91704667}
+  m_LocalPosition: {x: -2.02, y: 10.35, z: -8.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 47.004, y: 0, z: 0}
 --- !u!114 &108704948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,6 +1193,18 @@ MonoBehaviour:
   m_BlurFactor: 0.2
   m_UseSceneMesh: 0
   m_SceneMesh: {fileID: 0}
+--- !u!114 &108704949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 108704944}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfe63ddf4dcc054bbf54fbe1af105da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FrameCountToCapture: 30
 --- !u!1001 &111788892
 Prefab:
   m_ObjectHideFlags: 0
@@ -1902,7 +1915,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221217201}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 10, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2437,7 +2450,7 @@ GameObject:
   - component: {fileID: 267351652}
   - component: {fileID: 267351651}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2505,12 +2518,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 267351650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 250, y: 250, z: 250}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1958909223}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &271361250
 Prefab:
@@ -24919,7 +24932,7 @@ MonoBehaviour:
     m_MinMaxFlag: 3
     m_Name: Protest_Grouping
     m_Description: 
-    m_DefaultValue0: 1
+    m_DefaultValue0: 0
     m_DefaultValue1: 0
     m_DefaultValue2: 0
     m_DefaultValue3: 0
@@ -24935,7 +24948,7 @@ MonoBehaviour:
     m_MinMaxFlag: 3
     m_Name: CRS_Grouping
     m_Description: 
-    m_DefaultValue0: 1
+    m_DefaultValue0: 0
     m_DefaultValue1: 0
     m_DefaultValue2: 0
     m_DefaultValue3: 0
@@ -25012,7 +25025,7 @@ MonoBehaviour:
     m_MaxValue2: 1
     m_MaxValue3: 1
   - m_Type: 28
-    m_MinMaxFlag: 3
+    m_MinMaxFlag: 1
     m_Name: Speed_Grow_Mass
     m_Description: 
     m_DefaultValue0: 0.02
@@ -25191,7 +25204,7 @@ MonoBehaviour:
     m_MinMaxFlag: 1
     m_Name: CRS_Count
     m_Description: 
-    m_DefaultValue0: 7e-43
+    m_DefaultValue0: 5.6e-43
     m_DefaultValue1: 0
     m_DefaultValue2: 0
     m_DefaultValue3: 0
@@ -25207,7 +25220,7 @@ MonoBehaviour:
     m_MinMaxFlag: 1
     m_Name: Protest_Count
     m_Description: 
-    m_DefaultValue0: 7e-43
+    m_DefaultValue0: 5.6e-43
     m_DefaultValue1: 0
     m_DefaultValue2: 0
     m_DefaultValue3: 0
@@ -25251,13 +25264,93 @@ MonoBehaviour:
     m_MaxValue1: 1
     m_MaxValue2: 1
     m_MaxValue3: 1
-  m_FxAttributesDescHash: 1338302150
+  - m_Type: 28
+    m_MinMaxFlag: 0
+    m_Name: OffsetYpos
+    m_Description: 
+    m_DefaultValue0: 0
+    m_DefaultValue1: 0
+    m_DefaultValue2: 0
+    m_DefaultValue3: 0
+    m_MinValue0: 0
+    m_MinValue1: 0
+    m_MinValue2: 0
+    m_MinValue3: 0
+    m_MaxValue0: 1
+    m_MaxValue1: 1
+    m_MaxValue2: 1
+    m_MaxValue3: 1
+  - m_Type: 28
+    m_MinMaxFlag: 1
+    m_Name: Protest_Regain_Mood_Speed
+    m_Description: 
+    m_DefaultValue0: 0.01
+    m_DefaultValue1: 0
+    m_DefaultValue2: 0
+    m_DefaultValue3: 0
+    m_MinValue0: 0
+    m_MinValue1: 0
+    m_MinValue2: 0
+    m_MinValue3: 0
+    m_MaxValue0: 1
+    m_MaxValue1: 1
+    m_MaxValue2: 1
+    m_MaxValue3: 1
+  - m_Type: 28
+    m_MinMaxFlag: 1
+    m_Name: CRS_Regain_Mood_Speed
+    m_Description: 
+    m_DefaultValue0: 0.01
+    m_DefaultValue1: 0
+    m_DefaultValue2: 0
+    m_DefaultValue3: 0
+    m_MinValue0: 0
+    m_MinValue1: 0
+    m_MinValue2: 0
+    m_MinValue3: 0
+    m_MaxValue0: 1
+    m_MaxValue1: 1
+    m_MaxValue2: 1
+    m_MaxValue3: 1
+  - m_Type: 22
+    m_MinMaxFlag: 3
+    m_Name: Dog_CRS
+    m_Description: 
+    m_DefaultValue0: 0
+    m_DefaultValue1: 0
+    m_DefaultValue2: 0
+    m_DefaultValue3: 0
+    m_MinValue0: 0
+    m_MinValue1: 0
+    m_MinValue2: 0
+    m_MinValue3: 0
+    m_MaxValue0: 1e-45
+    m_MaxValue1: 1.4e-44
+    m_MaxValue2: 1.4e-44
+    m_MaxValue3: 1.4e-44
+  - m_Type: 28
+    m_MinMaxFlag: 1
+    m_Name: Dog_Duration
+    m_Description: 
+    m_DefaultValue0: 20
+    m_DefaultValue1: 0
+    m_DefaultValue2: 0
+    m_DefaultValue3: 0
+    m_MinValue0: 0
+    m_MinValue1: 0
+    m_MinValue2: 0
+    m_MinValue3: 0
+    m_MaxValue0: 1
+    m_MaxValue1: 1
+    m_MaxValue2: 1
+    m_MaxValue3: 1
+  m_FxAttributesDescHash: -1756874624
   m_FxAttributesStartValues:
-  - 1
   - 0
   - 0
   - 0
-  - 1
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -25321,11 +25414,11 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 7e-43
+  - 5.6e-43
   - 0
   - 0
   - 0
-  - 7e-43
+  - 5.6e-43
   - 0
   - 0
   - 0
@@ -25337,398 +25430,27 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - -0.04
+  - 0
+  - 0
+  - 0
+  - 0.01
+  - 0
+  - 0
+  - 0
+  - 0.01
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 20
+  - 0
+  - 0
+  - 0
   m_FxSamplersList:
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 1
-      m_Name: Curve_1
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: 0, y: 0, z: 0}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves:
-        - serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.15538463
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.3461539
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.5492308
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8025642
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        - serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.15538463
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.3461539
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.5492308
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8025642
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        - serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.15538463
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.3461539
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.5492308
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8025642
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-    m_ShapeType: 7
-    m_ShapeTransform:
-      m_Position: {x: 0, y: 0, z: 0}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray:
-    - serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.15538463
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.3461539
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5492308
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.8025642
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    - serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.15538463
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.3461539
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5492308
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.8025642
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    - serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.15538463
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.3461539
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5492308
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.8025642
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_CurvesTimeKeys:
-    - 0
-    - 0.15538463
-    - 0.3461539
-    - 0.5492308
-    - 0.8025642
-    - 1
-    m_Text: 
-    m_WasModified: 1
   - m_EditorShapeType: -1
     m_ShapeCenter: {x: 0, y: 0, z: 0}
     m_EulerOrientation: {x: 0, y: 0, z: 0}
@@ -25744,7 +25466,7 @@ MonoBehaviour:
         m_Curves: []
     m_ShapeType: 7
     m_ShapeTransform:
-      m_Position: {x: -2, y: 0, z: -2}
+      m_Position: {x: -1, y: 0, z: -2}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
       m_Scale: {x: 1, y: 1, z: 1}
     m_Dimensions: {x: 1, y: 1, z: 1}
@@ -25775,7 +25497,7 @@ MonoBehaviour:
         m_Curves: []
     m_ShapeType: 7
     m_ShapeTransform:
-      m_Position: {x: -9.452595, y: -0.0000138282785, z: 8.031711}
+      m_Position: {x: -2.2, y: 0, z: 4}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
       m_Scale: {x: 1, y: 1, z: 1}
     m_Dimensions: {x: 1, y: 1, z: 1}
@@ -25822,7 +25544,69 @@ MonoBehaviour:
     m_CurvesTimeKeys: []
     m_Text: 
     m_WasModified: 1
-  m_FxSamplersDescHash: 616725459
+  - m_EditorShapeType: -1
+    m_ShapeCenter: {x: 0, y: 0, z: 0}
+    m_EulerOrientation: {x: 0, y: 0, z: 0}
+    m_Descriptor:
+      m_Type: 0
+      m_Name: ProtestStartArea
+      m_Description: 
+      m_ShapeDefaultTransform:
+        m_Position: {x: -8.743219, y: 0, z: 0}
+        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
+        m_Scale: {x: 1, y: 1, z: 1}
+      m_CurveDefaultValue:
+        m_Curves: []
+    m_ShapeType: 0
+    m_ShapeTransform:
+      m_Position: {x: -1, y: 0, z: -2}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    m_Dimensions: {x: 2, y: 0.1, z: 2}
+    m_Mesh: {fileID: 0}
+    m_MeshFilter: {fileID: 0}
+    m_SkinnedMeshRenderer: {fileID: 0}
+    m_SamplingInfo: 64
+    m_WorldSpaceSampling: 0
+    m_Texture: {fileID: 0}
+    m_TextureTexcoordMode: 0
+    m_CurveIsOverride: 0
+    m_CurvesArray: []
+    m_CurvesTimeKeys: []
+    m_Text: 
+    m_WasModified: 1
+  - m_EditorShapeType: -1
+    m_ShapeCenter: {x: 0, y: 0, z: 0}
+    m_EulerOrientation: {x: 0, y: 0, z: 0}
+    m_Descriptor:
+      m_Type: 0
+      m_Name: CRSStartArea
+      m_Description: 
+      m_ShapeDefaultTransform:
+        m_Position: {x: -10.257743, y: 0.00023841858, z: 12.538332}
+        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
+        m_Scale: {x: 1, y: 1, z: 1}
+      m_CurveDefaultValue:
+        m_Curves: []
+    m_ShapeType: 0
+    m_ShapeTransform:
+      m_Position: {x: -2.2, y: 0, z: 4}
+      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+      m_Scale: {x: 1, y: 1, z: 1}
+    m_Dimensions: {x: 2, y: 0.1, z: 2}
+    m_Mesh: {fileID: 0}
+    m_MeshFilter: {fileID: 0}
+    m_SkinnedMeshRenderer: {fileID: 0}
+    m_SamplingInfo: 64
+    m_WorldSpaceSampling: 0
+    m_Texture: {fileID: 0}
+    m_TextureTexcoordMode: 0
+    m_CurveIsOverride: 0
+    m_CurvesArray: []
+    m_CurvesTimeKeys: []
+    m_Text: 
+    m_WasModified: 1
+  m_FxSamplersDescHash: -1201015108
   m_PlayOnStart: 1
   m_TriggerAndForget: 0
   m_IsPlaying: 0
@@ -39345,15 +39129,16 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958909222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 853017814}
   - {fileID: 1682078533}
   - {fileID: 1698947801}
   - {fileID: 1758584319}
+  - {fileID: 267351654}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1962841507
 Prefab:

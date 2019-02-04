@@ -71,9 +71,41 @@ public class PKFxAssetEditor : Editor
 			SerializedProperty attrDesc = attrs.GetArrayElementAtIndex(i);
 			SerializedProperty attrName = attrDesc.FindPropertyRelative("m_Name");
 			SerializedProperty attrType = attrDesc.FindPropertyRelative("m_Type");
-			
+			SerializedProperty minMaxFlag = attrDesc.FindPropertyRelative("m_MinMaxFlag");
+			PKFxManager.EBaseType baseType = (PKFxManager.EBaseType)attrType.intValue;
+
+			string minValDesc = "";
+			string maxValDesc = "";
+
+			if ((minMaxFlag.intValue & (int)PKFxFxAsset.AttributeDesc.EAttrDescFlag.HasMin) != 0)
+			{
+				Vector4 minVal = GetMinFValue(attrDesc);
+				minValDesc = FormatLimitValue(minVal, baseType);
+			}
+			else
+			{
+				minValDesc = "[-infinity]";
+			}
+			if ((minMaxFlag.intValue & (int)PKFxFxAsset.AttributeDesc.EAttrDescFlag.HasMax) != 0)
+			{
+				Vector4 maxVal = GetMaxFValue(attrDesc);
+				maxValDesc = FormatLimitValue(maxVal, baseType);
+			}
+			else
+			{
+				maxValDesc = "[+infinity]";
+			}
+
+			Vector4 defaultVal = GetDefaultFValue(attrDesc);
+			string defaultValStr = FormatLimitValue(defaultVal, baseType);
+
 			EditorGUI.indentLevel++;
-			EditorGUILayout.LabelField(attrType.enumNames[attrType.enumValueIndex] + " " + attrName.stringValue);
+			EditorGUILayout.LabelField(attrName.stringValue);
+			EditorGUI.indentLevel++;
+			EditorGUILayout.LabelField(attrType.enumNames[attrType.enumValueIndex]);
+			EditorGUILayout.LabelField("Min/Max: " + minValDesc + "-" + maxValDesc);
+			EditorGUILayout.LabelField("Default: " + defaultValStr);
+			EditorGUI.indentLevel--;
 			EditorGUI.indentLevel--;
 		}
 		EditorGUI.indentLevel--;
@@ -94,5 +126,74 @@ public class PKFxAssetEditor : Editor
 			EditorGUI.indentLevel--;
 		}
 		EditorGUI.indentLevel--;
+	}
+
+	private Vector4 GetMinFValue(SerializedProperty attrDesc)
+	{
+		SerializedProperty minValue0 = attrDesc.FindPropertyRelative("m_MinValue0");
+		SerializedProperty minValue1 = attrDesc.FindPropertyRelative("m_MinValue1");
+		SerializedProperty minValue2 = attrDesc.FindPropertyRelative("m_MinValue2");
+		SerializedProperty minValue3 = attrDesc.FindPropertyRelative("m_MinValue3");
+
+		return new Vector4(minValue0.floatValue, minValue1.floatValue, minValue2.floatValue, minValue3.floatValue);
+	}
+
+	private Vector4 GetMaxFValue(SerializedProperty attrDesc)
+	{
+		SerializedProperty maxValue0 = attrDesc.FindPropertyRelative("m_MaxValue0");
+		SerializedProperty maxValue1 = attrDesc.FindPropertyRelative("m_MaxValue1");
+		SerializedProperty maxValue2 = attrDesc.FindPropertyRelative("m_MaxValue2");
+		SerializedProperty maxValue3 = attrDesc.FindPropertyRelative("m_MaxValue3");
+
+		return new Vector4(maxValue0.floatValue, maxValue1.floatValue, maxValue2.floatValue, maxValue3.floatValue);
+	}
+
+	private Vector4 GetDefaultFValue(SerializedProperty attrDesc)
+	{
+		SerializedProperty defaultValue0 = attrDesc.FindPropertyRelative("m_DefaultValue0");
+		SerializedProperty defaultValue1 = attrDesc.FindPropertyRelative("m_DefaultValue1");
+		SerializedProperty defaultValue2 = attrDesc.FindPropertyRelative("m_DefaultValue2");
+		SerializedProperty defaultValue3 = attrDesc.FindPropertyRelative("m_DefaultValue3");
+
+		return new Vector4(defaultValue0.floatValue, defaultValue1.floatValue, defaultValue2.floatValue, defaultValue3.floatValue);
+	}
+
+	private string FormatLimitValue(Vector4 value, PKFxManager.EBaseType baseType)
+	{
+		string retStr = "";
+
+		if (baseType == PKFxManagerImpl.EBaseType.Float)
+		{
+			retStr = "[" + value.x + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Float2)
+		{
+			retStr = "[" + value.x + "," + value.y + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Float3)
+		{
+			retStr = "[" + value.x + "," + value.y + "," + value.z + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Float4)
+		{
+			retStr = "[" + value.x + "," + value.y + "," + value.z + "," + value.w + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Int)
+		{
+			retStr = "[" + PKFxManager.Float2Int(value.x) + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Int2)
+		{
+			retStr = "[" + PKFxManager.Float2Int(value.x) + "," + PKFxManager.Float2Int(value.y) + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Int3)
+		{
+			retStr = "[" + PKFxManager.Float2Int(value.x) + "," + PKFxManager.Float2Int(value.y) + "," + PKFxManager.Float2Int(value.z) + "]";
+		}
+		else if (baseType == PKFxManagerImpl.EBaseType.Int4)
+		{
+			retStr = "[" + PKFxManager.Float2Int(value.x) + "," + PKFxManager.Float2Int(value.y) + "," + PKFxManager.Float2Int(value.z) + "," + PKFxManager.Float2Int(value.w) + "]";
+		}
+		return retStr;
 	}
 }

@@ -17,7 +17,7 @@ public class PkFxProfilerCaptureButton : MonoBehaviour
 {
 	public int		FrameCountToCapture = 10;
 
-	private bool	m_InCapture = false;
+	private bool	m_InCapture = true;
 	private int		m_FrameCaptured = 0;
 
 	void OnGUI()
