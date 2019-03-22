@@ -266,11 +266,13 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	
 //// GESTION HUMEUR	
 
-	float moodCRS = spatialLayers.SL_CRS.Mood.average(Position, SizeRadar*1.5);
+	float nbCRS = spatialLayers.SL_CRS.neighborCount(Position, SizeRadar);
+	float nbProtest = spatialLayers.SL_Protest.neighborCount(Position, SizeRadar);
 	float moodProtest = spatialLayers.SL_Protest.Mood.average(Position, SizeRadar);
+	
 	//// Impact de l\'humeur par des evenement externe pour chaque individu
-	float moodBetweenProtest = select(0,moodProtest*dt,isfinite(moodProtest))*(1-saturate(length(realTarget*2)));
-	float moodWithCRS = 1.5*select(0,abs(moodCRS)*dt,isfinite(moodCRS));
+	float moodBetweenProtest = select(0,(moodProtest-Mood)*dt,isfinite(moodProtest));
+	float moodWithCRS = select(0,(nbCRS/(nbProtest/2))*dt,isfinite(nbCRS) && isfinite(nbProtest)&&nbProtest!=0);
 	float smokeMood = select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
 	float dogMood = select(0,dt,dog.x!=0);
 	float regainMoodByDistance = -dt*length(realTarget)*0.01;
@@ -281,7 +283,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 //// GESTION DESERTION
 
 	//// Accumulation de la tension au cours du temps si mauvaise humeur
-	AccuAngry+= select(0,dt*Speed_Weak_Mass * select(1,10,isfinite(dog.x)),Mood==1 && isfinite(moodCRS) || Mood==1 && isfinite(dog.x));
+	AccuAngry+= select(0,dt*Speed_Weak_Mass * select(1,10,isfinite(dog.x)),Mood==1 && isfinite(nbCRS) || Mood==1 && isfinite(dog.x));
 	AccuAngry = select(saturate(AccuAngry),0,Mood==-1 && Recall_Deserter==1 || TimeDesert==1 && Charge_Protest==1);
 	//// Desertion
 	TimeDesert+= select(0,dt*Speed_Grow_Mass,AccuAngry==1);
@@ -304,7 +306,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 //// GESTION ENVIRONMENT
 
 	////Raycast de l\'environment 3d a partir de chaque individu en direction du groupe opposé + ou - 90°
-	float4 avoidWall = scene.intersect(Position- OffsetYpos.0x0, rotate(safe_normalize(Target + InitialPos - Position),float3(0,1,0),rand(-pi,pi)*0.5), 1);
+	float4 avoidWall = scene.intersect(Position- OffsetYpos.0x0, rotate(safe_normalize(Target + InitialPos - Position),float3(0,1,0),rand(-pi,pi)), 1);
 	avoidWall = select(0, avoidWall , isfinite(avoidWall));
 	
 //// GESTION ENTRE INDIVIDU
@@ -325,7 +327,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
 	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2 * saturate(0.25*length(ProtestTarget.samplePosition()-Position));
 	//// Compilation de toutes les notions de mouvements
-	float3 allMove = dog + smokeGaz + circling + charge + desertDir + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8;
+	float3 allMove = dog + smokeGaz + circling + charge + avoidWall.xyz*avoidWall.w*8 + desertDir + PUSH + LINK + pos ;
 	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
 	
 //// GESTION COULEURS INFOS
@@ -356,7 +358,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-7.3438239e+000, 2.1934509e-005, 1.8433110e+000);
+	Position = float3(-7.3438239e+000, 7.5256503e-001, 1.3038673e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -387,7 +389,7 @@ CParticleSpatialDescriptor	$LOCAL$/CParticleSpatialDescriptor_50098991
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_40ED43C8
 {
-	Position = float3(-9.6123762e+000, 2.1409988e-004, 9.6572151e+000);
+	Position = float3(-7.5258818e+000, 2.1409988e-004, 9.6572151e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -688,7 +690,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	gaz = select(1,0,Gaz_CRS==0);
 	
 	dog = select(0,1,Dog_CRS==1 && dog==0);
-	Dog.trigger(dog == 1 && ID == floor((scene.Time*CRS_Count)%CRS_Count));
+	Dog.broadcast(dog == 1 && ID == floor((scene.Time*CRS_Count)%CRS_Count));
 	dog = select(1,0,Dog_CRS==0);
 	
 	MeshId = ActivateVoxelCharacter;
@@ -1382,6 +1384,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_2019FD22
 {
 	AttributeName = "Dog_CRS";
 	AttributeType = int;
+	AttributeScope = global;
 	HasMin = true;
 	HasMax = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
@@ -1394,6 +1397,7 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_0FD5F18D
 CParticleEventDeclaration	$LOCAL$/CParticleEventDeclaration_04FC78D4
 {
 	EventName = "Dog";
+	Broadcast = true;
 	EventAction = "$LOCAL$/Dog";
 }
 CParticleEvolver_Script	$LOCAL$/Script_5
