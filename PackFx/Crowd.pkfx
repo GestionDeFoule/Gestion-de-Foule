@@ -26,6 +26,7 @@ CNEdEditorParticle_Data	$LOCAL$/EDITOR
 		"$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_E2EECECA",
 		"$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_4E79EAD6",
 		"$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_95BBB94F",
+		"$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_866C4219",
 	};
 	BackdropToVectorFieldSamplerMapping = 
 	{
@@ -61,6 +62,9 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_AE135B2A
 		"$LOCAL$/CParticleFieldDeclaration_3D1455F1",
 		"$LOCAL$/CParticleFieldDeclaration_1B42C308",
 		"$LOCAL$/CParticleFieldDeclaration_2B9155C6",
+		"$LOCAL$/CParticleFieldDeclaration_A2B12353",
+		"$LOCAL$/CParticleFieldDeclaration_DD890B12",
+		"$LOCAL$/CParticleFieldDeclaration_EBBB3332",
 	};
 	SpawnEvaluator = "$LOCAL$/CCompilerSyntaxNodeExpression_5566F5E7";
 	States = 
@@ -170,6 +174,7 @@ CParticleAttributeList	$LOCAL$/_GlobalAttributes
 		"$LOCAL$/CParticleSamplerProceduralTurbulence_29856854",
 		"$LOCAL$/CParticleSamplerShape_EC04F234",
 		"$LOCAL$/CParticleSamplerShape_0C393D5C",
+		"$LOCAL$/CParticleSamplerShape_CC0D500F",
 	};
 }
 CNEdEditorBackdrop_List	$LOCAL$/_BackdropList
@@ -264,6 +269,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	//// Position réel cible
 	float3 realTarget = Target + InitialPos - Position;
 	
+	TEST=InitialPos;
+	TEST2= Position-Target;
+	
 //// GESTION HUMEUR	
 
 	float nbCRS = spatialLayers.SL_CRS.neighborCount(Position, SizeRadar);
@@ -328,7 +336,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2 * saturate(0.25*length(ProtestTarget.samplePosition()-Position));
 	//// Compilation de toutes les notions de mouvements
 	float3 allMove = dog + smokeGaz + circling + charge + avoidWall.xyz*avoidWall.w*8 + desertDir + PUSH + LINK + pos ;
-	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
+
+	VelocityField = lerp(allMove*saturate(length(realTarget*0.6)),allMove*1.3,Agitation);
+	
 	
 //// GESTION COULEURS INFOS
 
@@ -358,7 +368,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-7.3438239e+000, 7.5256503e-001, 1.3038673e+000);
+	Position = float3(-7.3438239e+000, 7.5256503e-001, 3.5275948e-001);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -647,11 +657,6 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	float3 InitialPos = rotate(float3(pow(SLR,0.5),0,0),float3(0,1,0),R*pi*2)*2*(1-CRS_Grouping);
 	float3 Target = CRSTarget.samplePosition();
 	float3 realTarget = Target + InitialPos - Position;
-
-	float moodCRS= spatialLayers.SL_CRS.Mood.average(Position, SizeRadar);
-	float moodProtest = spatialLayers.SL_Protest.Mood.average(Position, SizeRadar*1.5);
-	Mood += -CRS_Regain_Mood_Speed*dt + select(0,moodCRS*dt,isfinite(moodCRS))*(1-saturate(length(realTarget*2))) + 1.5*select(0,abs(moodProtest)*dt,isfinite(moodProtest)) -dt*length(realTarget)*0.01;
-	Mood = clamp(Mood,-1,1);
 	
 	float3 posProtest = ProtestTarget.samplePosition();
 	float3 nearProtest = spatialLayers.SL_Protest.Position.closest(Position, SizeRadar);
@@ -1489,4 +1494,34 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_DB4F5DB7
 	HasMin = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
 	MaxValueI4 = int4(10, 10, 10, 10);
+}
+CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_CC0D500F
+{
+	SamplerName = "ZoneCapacite";
+	Shape = "$LOCAL$/CShapeDescriptor_9C5A187E";
+}
+CShapeDescriptor	$LOCAL$/CShapeDescriptor_9C5A187E
+{
+	Position = float3(1.9073491e-006, -2.5273491e+001, 8.7018080e+000);
+	ShapeType = CYLINDER;
+	Height = 1.0000000e+000;
+}
+CNEdEditorParticle_BackdropToSamplerShape	$LOCAL$/CNEdEditorParticle_BackdropToSamplerShape_866C4219
+{
+	SourceSamplerShape = "$LOCAL$/CParticleSamplerShape_CC0D500F";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_A2B12353
+{
+	FieldName = "TEST";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_DD890B12
+{
+	FieldName = "TEST2";
+	FieldType = float3;
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_EBBB3332
+{
+	FieldName = "TEST3";
+	FieldType = float3;
 }
