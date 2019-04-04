@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2519,7 +2519,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 267351650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0, z: -11.5}
   m_LocalScale: {x: 250, y: 250, z: 250}
   m_Children: []
   m_Father: {fileID: 1958909223}
@@ -3740,6 +3740,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 6deaa6e113f8ccf41b89ef40252d2ff5,
     type: 3}
   m_PrefabInternal: {fileID: 370581873}
+--- !u!1 &396204009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 396204010}
+  m_Layer: 0
+  m_Name: FollowTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &396204010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 396204009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 24.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &402427823
 Prefab:
   m_ObjectHideFlags: 0
@@ -5167,733 +5195,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4d0eb34aa61a6cf45827d6a9f856bf7d,
     type: 3}
   m_PrefabInternal: {fileID: 524241668}
---- !u!1 &526347087
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 526347089}
-  - component: {fileID: 526347088}
-  m_Layer: 0
-  m_Name: FX (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &526347088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 526347087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5c02dd42880460b914f6e0206b8c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FxAttributesList: []
-  m_FxAttributesDesc:
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Protest_Grouping
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: CRS_Grouping
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Start_Angry_Protest
-    m_Description: 
-    m_DefaultValue0: 0.5
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Start_Angry_CRS
-    m_Description: 
-    m_DefaultValue0: 0.25
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Recall_Deserter
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: Speed_Weak_Mass
-    m_Description: 
-    m_DefaultValue0: 0.04
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: Speed_Grow_Mass
-    m_Description: 
-    m_DefaultValue0: 0.02
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Agitation
-    m_Description: 
-    m_DefaultValue0: 1
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Charge_Protest
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Circling_Protest
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Mask_Protest_Percent
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Treshold_Mood_Action_Protest
-    m_Description: 
-    m_DefaultValue0: 0.5
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Charge_CRS
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Circling_CRS
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Gaz_CRS
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: Gaz_PowerThrow
-    m_Description: 
-    m_DefaultValue0: 4
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: Treshold_Mood_Action_CRS
-    m_Description: 
-    m_DefaultValue0: 0.9
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 22
-    m_MinMaxFlag: 1
-    m_Name: CRS_Count
-    m_Description: 
-    m_DefaultValue0: 5.6e-43
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 22
-    m_MinMaxFlag: 1
-    m_Name: Protest_Count
-    m_Description: 
-    m_DefaultValue0: 5.6e-43
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: ActivateVoxelCharacter
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 28
-    m_MinMaxFlag: 3
-    m_Name: InfosVisibility
-    m_Description: 
-    m_DefaultValue0: 1
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 0
-    m_Name: OffsetYpos
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: Protest_Regain_Mood_Speed
-    m_Description: 
-    m_DefaultValue0: 0.01
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: CRS_Regain_Mood_Speed
-    m_Description: 
-    m_DefaultValue0: 0.01
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  - m_Type: 22
-    m_MinMaxFlag: 3
-    m_Name: Dog_CRS
-    m_Description: 
-    m_DefaultValue0: 0
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1e-45
-    m_MaxValue1: 1.4e-44
-    m_MaxValue2: 1.4e-44
-    m_MaxValue3: 1.4e-44
-  - m_Type: 28
-    m_MinMaxFlag: 1
-    m_Name: Dog_Duration
-    m_Description: 
-    m_DefaultValue0: 20
-    m_DefaultValue1: 0
-    m_DefaultValue2: 0
-    m_DefaultValue3: 0
-    m_MinValue0: 0
-    m_MinValue1: 0
-    m_MinValue2: 0
-    m_MinValue3: 0
-    m_MaxValue0: 1
-    m_MaxValue1: 1
-    m_MaxValue2: 1
-    m_MaxValue3: 1
-  m_FxAttributesDescHash: -1756874624
-  m_FxAttributesStartValues:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.25
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.04
-  - 0
-  - 0
-  - 0
-  - 0.02
-  - 0
-  - 0
-  - 0
-  - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.5
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 4
-  - 0
-  - 0
-  - 0
-  - 0.9
-  - 0
-  - 0
-  - 0
-  - 1.4e-44
-  - 0
-  - 0
-  - 0
-  - 1.4e-44
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 1
-  - 0
-  - 0
-  - 0
-  - -0.04
-  - 0
-  - 0
-  - 0
-  - 0.01
-  - 0
-  - 0
-  - 0
-  - 0.01
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 20
-  - 0
-  - 0
-  - 0
-  m_FxSamplersList:
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 0
-      m_Name: ProtestTarget
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: -7.343824, y: 0.00002193451, z: 1.843311}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves: []
-    m_ShapeType: 7
-    m_ShapeTransform:
-      m_Position: {x: -1, y: 0, z: -2}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray: []
-    m_CurvesTimeKeys: []
-    m_Text: 
-    m_WasModified: 1
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 0
-      m_Name: CRSTarget
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: -9.452595, y: -0.0000138282785, z: 8.031711}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves: []
-    m_ShapeType: 7
-    m_ShapeTransform:
-      m_Position: {x: -2.2, y: 0, z: 4}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray: []
-    m_CurvesTimeKeys: []
-    m_Text: 
-    m_WasModified: 1
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 4
-      m_Name: Turb_1
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: 0, y: 0, z: 0}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves: []
-    m_ShapeType: 7
-    m_ShapeTransform:
-      m_Position: {x: 0, y: 0, z: 0}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 0}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray: []
-    m_CurvesTimeKeys: []
-    m_Text: 
-    m_WasModified: 1
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 0
-      m_Name: ProtestStartArea
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: -8.743219, y: 0, z: 0}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves: []
-    m_ShapeType: 0
-    m_ShapeTransform:
-      m_Position: {x: -1, y: 0, z: -2}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 2, y: 0.1, z: 2}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray: []
-    m_CurvesTimeKeys: []
-    m_Text: 
-    m_WasModified: 1
-  - m_EditorShapeType: -1
-    m_ShapeCenter: {x: 0, y: 0, z: 0}
-    m_EulerOrientation: {x: 0, y: 0, z: 0}
-    m_Descriptor:
-      m_Type: 0
-      m_Name: CRSStartArea
-      m_Description: 
-      m_ShapeDefaultTransform:
-        m_Position: {x: -10.257743, y: 0.00023841858, z: 12.538332}
-        m_Rotation: {x: 0, y: 0, z: 0, w: 0.99999994}
-        m_Scale: {x: 1, y: 1, z: 1}
-      m_CurveDefaultValue:
-        m_Curves: []
-    m_ShapeType: 0
-    m_ShapeTransform:
-      m_Position: {x: -2.2, y: 0, z: 4}
-      m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-      m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 2, y: 0.1, z: 2}
-    m_Mesh: {fileID: 0}
-    m_MeshFilter: {fileID: 0}
-    m_SkinnedMeshRenderer: {fileID: 0}
-    m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
-    m_Texture: {fileID: 0}
-    m_TextureTexcoordMode: 0
-    m_CurveIsOverride: 0
-    m_CurvesArray: []
-    m_CurvesTimeKeys: []
-    m_Text: 
-    m_WasModified: 1
-  m_FxSamplersDescHash: -1201015108
-  m_PlayOnStart: 1
-  m_TriggerAndForget: 0
-  m_IsPlaying: 0
-  m_BoundFx: {fileID: 0}
-  m_FxName: Crowd.pkfx
-  m_FxAsset: {fileID: 11400000, guid: d7ea2b211286e56419c454ef618f1988, type: 2}
---- !u!4 &526347089
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 526347087}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &529380590
 Prefab:
   m_ObjectHideFlags: 0
@@ -25635,6 +24936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870993190}
   - component: {fileID: 870993189}
+  - component: {fileID: 870993191}
   m_Layer: 0
   m_Name: FX
   m_TagString: Untagged
@@ -26191,7 +25493,7 @@ MonoBehaviour:
         m_Scale: {x: 1, y: 1, z: 1}
       m_CurveDefaultValue:
         m_Curves: []
-    m_ShapeType: 7
+    m_ShapeType: 0
     m_ShapeTransform:
       m_Position: {x: -1, y: 0, z: -2}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -26222,9 +25524,9 @@ MonoBehaviour:
         m_Scale: {x: 1, y: 1, z: 1}
       m_CurveDefaultValue:
         m_Curves: []
-    m_ShapeType: 7
+    m_ShapeType: 0
     m_ShapeTransform:
-      m_Position: {x: -2.2, y: 0, z: 4}
+      m_Position: {x: -2.23, y: 0, z: 3.41}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
       m_Scale: {x: 1, y: 1, z: 1}
     m_Dimensions: {x: 1, y: 1, z: 1}
@@ -26232,7 +25534,7 @@ MonoBehaviour:
     m_MeshFilter: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
     m_SamplingInfo: 64
-    m_WorldSpaceSampling: 0
+    m_WorldSpaceSampling: 1
     m_Texture: {fileID: 0}
     m_TextureTexcoordMode: 0
     m_CurveIsOverride: 0
@@ -26347,12 +25649,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870993188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.018, y: 0, z: -0.641}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870993191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870993188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62737a33b69e94d4484fb0f880b690f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: {fileID: 396204010}
 --- !u!1001 &877638279
 Prefab:
   m_ObjectHideFlags: 0
@@ -27674,7 +26988,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 1beedf6d32e379543a2fa69b32360ff1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -141.9
+      value: -144.7
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1beedf6d32e379543a2fa69b32360ff1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27682,7 +26996,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1beedf6d32e379543a2fa69b32360ff1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -123.3
+      value: -115.5
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1beedf6d32e379543a2fa69b32360ff1, type: 3}
       propertyPath: m_LocalRotation.x
