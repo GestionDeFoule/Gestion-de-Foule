@@ -412,7 +412,7 @@ CParticleSpatialDescriptor	$LOCAL$/CParticleSpatialDescriptor_50098991
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_40ED43C8
 {
-	Position = float3(-6.1326017e+000, 2.1409988e-004, 1.2546258e+001);
+	Position = float3(-6.7334495e+000, 2.1409988e-004, 1.2546258e+001);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }

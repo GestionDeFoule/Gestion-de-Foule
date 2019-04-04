@@ -15,7 +15,7 @@ MonoBehaviour:
   m_TimeMultiplier: 1
   m_EnableFileLog: 1
   m_EnableRaycastForCollisions: 0
-  m_PopcornPackFxPath: 
+  m_PopcornPackFxPath: ../PackFx
   m_UnityPackFxPath: /PopcornFXAssets
   m_RenderingCategory: 0
   m_DebugEffectsBoundingBoxes: 0

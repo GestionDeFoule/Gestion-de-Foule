@@ -131,7 +131,13 @@
   <MaxSimCachePointCount>500000</MaxSimCachePointCount>
   <MaxSimCacheFileSizeMb>500</MaxSimCacheFileSizeMb>
   <SimCacheAttrFiltersList />
-  <PlatformSettingsList />
+  <PlatformSettingsList>
+    <PlatformSettings>
+      <PlatformName>Unity</PlatformName>
+      <BuildOutputPath>../Bap Gestion de Foule/Assets/PopcornFXAssets/</BuildOutputPath>
+      <IsSelected>false</IsSelected>
+    </PlatformSettings>
+  </PlatformSettingsList>
   <ExternalResourcesPathList />
   <ExcludePathList />
   <IncludePathList />
