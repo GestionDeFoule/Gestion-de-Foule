@@ -67,6 +67,9 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_AE135B2A
 		"$LOCAL$/CParticleFieldDeclaration_1B42C308",
 		"$LOCAL$/CParticleFieldDeclaration_2B9155C6",
 		"$LOCAL$/CParticleFieldDeclaration_33289BB1",
+		"$LOCAL$/CParticleFieldDeclaration_1029B4AB",
+		"$LOCAL$/CParticleFieldDeclaration_06B1CB4A",
+		"$LOCAL$/CParticleFieldDeclaration_A34D46D5",
 	};
 	SpawnEvaluator = "$LOCAL$/CCompilerSyntaxNodeExpression_5566F5E7";
 	States = 
@@ -113,7 +116,8 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_5566F5E7
 	AxisUp = scene.axisUp();							
 	AxisSide = scene.axisSide();
 
-	RandomMood = rand(0.5,1.5);
+	RandomMoodUp = rand(0.5,1.5);
+	RandomMoodDown = rand(0.5,1.5);
 }
 ";
 }
@@ -293,6 +297,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	
 	//// Impact de l\'humeur par des evenement externe pour chaque individu
 	float moodBetweenProtest = select(0,(moodProtest-Mood)*dt*0.02,isfinite(moodProtest));
+	moodBetweenProtest = select(moodBetweenProtest*RandomMoodUp,moodBetweenProtest*RandomMoodDown,moodBetweenProtest<0);
 	float moodWithCRS = select(0,(nbCRS/(nbProtest/2))*dt,isfinite(nbCRS) && isfinite(nbProtest)&&nbProtest!=0);
 	float smokeMood = select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
 	float dogMood = select(0,dt*0.5,dog.x!=0);
@@ -300,7 +305,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float sitInMood = select(0,-dt,sitIn.x!=0);
 	float regainMoodByDistance = select(0,-dt*length(realTarget)*0.01,TimeDesert!=0);
 	//// Ajustement de l\'humeur en relation avec les elements externes
-	Mood += (-Protest_Regain_Mood_Speed*dt + smokeMood + dogMood + moodBetweenProtest + moodWithCRS + flashBallMood + sitInMood + regainMoodByDistance)*RandomMood ;
+	Mood += (-Protest_Regain_Mood_Speed*dt + sitInMood + regainMoodByDistance)*RandomMoodUp;
+	Mood += (smokeMood + dogMood + moodWithCRS + flashBallMood)*RandomMoodDown ;
+	Mood += moodBetweenProtest;
 	Mood = clamp(Mood,-1,1);
 	
 //// GESTION DESERTION
@@ -353,7 +360,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 //// GESTION COULEURS INFOS
 
 	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Mood*0.5+0.5),float4(0,0,0,1),AccuAngry)*InfosVisibility;
-	ColorRadar = Color*0.2;
+	ColorRadar = lerp(lerp(float4(0,0,1,0.05),float4(1,1,1,0.05),Mood*0.5+0.5),float4(0,0,0,0.05),AccuAngry)*InfosVisibility;
 	
 //// CONTRAINTES POSITION & NORMALISATION VECTEUR DIRECTION
 
@@ -378,7 +385,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-6.4163027e+000, 4.6737289e-001, 1.5086349e+001);
+	Position = float3(-6.4163027e+000, 4.6737289e-001, 3.7342770e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -1237,7 +1244,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_8F481ABE
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_FA555159
 {
 	AttributeName = "Protest_Regain_Mood_Speed";
-	DefaultValueF4 = float4(9.9999998e-003, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
+	DefaultValueF4 = float4(5.0495053e-004, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	MaxValueF4 = float4(1.0000000e-003, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
 	MaxValueI4 = int4(10, 10, 10, 10);
@@ -2231,7 +2238,7 @@ CParticleSamplerCurve	$LOCAL$/CParticleSamplerCurve_34AE7222
 }
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_33289BB1
 {
-	FieldName = "RandomMood";
+	FieldName = "RandomMoodUp";
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Fire
 {
@@ -2252,4 +2259,16 @@ CParticleEvolver_SpatialInsertion	$LOCAL$/Evolver_8
 {
 	CustomName = "SpatialInsertion";
 	SpatialLayer = "$LOCAL$/CParticleSpatialDescriptor_9F5A6F27";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_1029B4AB
+{
+	FieldName = "RandomMoodDown";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_06B1CB4A
+{
+	FieldName = "RandomAgiUP";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_A34D46D5
+{
+	FieldName = "RandomAgiDown";
 }
