@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class HandlePopcornFXEvent : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    PKFxFX fx;
+
+    // Use this for initialization
+    void Start () {
+        fx = this.GetComponent<PKFxFX>();
         PKFxEventManager.RegisterCustomHandler(OnRaiseEvent);
 
     }
@@ -14,8 +19,8 @@ public class HandlePopcornFXEvent : MonoBehaviour {
     private void OnRaiseEvent(string eventName, Vector3 position)
     {
         Debug.Log(eventName);
-        if (eventName == "Dog")
-            Debug.Log("Bonjour");
+        if (eventName == "MoveTarget")
+            fx.SetAttributeSafe("ProtestTarget", -5, 0, 12.f);
     }
 }
 
