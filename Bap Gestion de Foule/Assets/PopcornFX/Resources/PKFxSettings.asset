@@ -27,7 +27,7 @@ MonoBehaviour:
   m_VertexBufferSizeMultiplicator: 0.5
   m_IndexBufferSizeMultiplicator: 0.5
   m_MeshesDefaultSize:
-  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_9136D2F4;Crowd.pkfx/CParticleRenderer_Billboard_F587BE4B;Crowd.pkfx/CParticleRenderer_Billboard_2DA731EC;Crowd.pkfx/CParticleRenderer_Billboard_60415AAF;Crowd.pkfx/CParticleRenderer_Billboard_5036E488;Crowd.pkfx/CParticleRenderer_Billboard_D14E7475;Crowd.pkfx/CParticleRenderer_Billboard_7313AF0A
+  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_9136D2F4;Crowd.pkfx/CParticleRenderer_Billboard_F587BE4B;Crowd.pkfx/CParticleRenderer_Billboard_2DA731EC;Crowd.pkfx/CParticleRenderer_Billboard_60415AAF;Crowd.pkfx/CParticleRenderer_Billboard_5036E488;Crowd.pkfx/CParticleRenderer_Billboard_D14E7475;Crowd.pkfx/CParticleRenderer_Billboard_72602439;Crowd.pkfx/CParticleRenderer_Billboard_512BBCBA
     m_GeneratedName: Billboard Color Diffuse AlphaBlend (none) /PopcornFXAssets/Textures/BallDiffuse.png
       (none) (none) 1
     m_DefaultVertexBufferSize: 9600

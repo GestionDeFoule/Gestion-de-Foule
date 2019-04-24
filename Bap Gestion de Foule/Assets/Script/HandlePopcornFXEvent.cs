@@ -20,7 +20,7 @@ public class HandlePopcornFXEvent : MonoBehaviour {
     {
         Debug.Log(eventName);
         if (eventName == "MoveTarget")
-            fx.SetAttributeSafe("ProtestTarget", -5, 0, 12.f);
+            fx.SetAttributeSafe("ProtestTarget", -5, 0, 12.5f);
     }
 }
 
