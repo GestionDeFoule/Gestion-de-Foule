@@ -14,5 +14,9 @@ public class HandlePopcornFXEvent : MonoBehaviour {
     private void OnRaiseEvent(string eventName, Vector3 position)
     {
         Debug.Log(eventName);
+        if (eventName == "Dog")
+            Debug.Log("Bonjour");
     }
 }
+
+//MoveTarget

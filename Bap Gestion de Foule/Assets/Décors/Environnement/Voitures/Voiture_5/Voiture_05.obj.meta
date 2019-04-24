@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d0eb34aa61a6cf45827d6a9f856bf7d
+guid: efaa92774532c8a41ab74a13835bd848
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -11,7 +11,6 @@ ModelImporter:
     2300000: Voiture_05
     3300000: Voiture_05
     4300000: Voiture_05
-    6400000: Voiture_05
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,7 +44,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
