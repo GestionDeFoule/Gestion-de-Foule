@@ -391,7 +391,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-6.7238421e+000, 4.6737289e-001, 1.2397385e-001);
+	Position = float3(-6.7238421e+000, 4.6737289e-001, 1.2323907e+001);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -1825,6 +1825,7 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_FC43A20A
 		"$LOCAL$/CParticleFieldDeclaration_BDDC13C6",
 		"$LOCAL$/CParticleFieldDeclaration_6774BB01",
 		"$LOCAL$/CParticleFieldDeclaration_DC8B2A5C",
+		"$LOCAL$/CParticleFieldDeclaration_DD727026",
 	};
 	CustomEvents = 
 	{
@@ -1844,6 +1845,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_04848495
 	Expression = "function void	Eval()
 {
 	Life = infinity ;
+	timer = 1;
 }
 ";
 }
@@ -1891,7 +1893,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_0923FBB0
 	ThrowMolotov.trigger(throwMolotov==1 );
 	throwMolotov =  select(1,0, Molotov==0);
 	
-	MoveTarget.trigger(spatialLayers.SL_Protest.neighborCount(ProtestTarget.position(), 2)>2);
+	int nbProtest = spatialLayers.SL_Protest.neighborCount(ProtestTarget.samplePosition(), 2);
+	MoveTarget.trigger(nbProtest>4);
+
 }
 ";
 }
@@ -2250,6 +2254,7 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_33289BB1
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Fire
 {
+	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_2809445B";
 	DurationInSeconds = 1.0000000e+001;
 	SpawnCount = 5.0000000e+001;
@@ -2297,4 +2302,8 @@ CActionFactoryWithChilds	$LOCAL$/Spawner
 		"$LOCAL$/CRS",
 		"$LOCAL$/Monde",
 	};
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_DD727026
+{
+	FieldName = "timer";
 }
