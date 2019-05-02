@@ -261,7 +261,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	dog = select(0,safe_normalize(Position-dog),isfinite(dog));
 
 	//// Detection du gaz
-	float3 smokeGaz = spatialLayers.SL_Smoke.Position.closest(Position, SizeRadar*3);
+	float3 smokeGaz = spatialLayers.SL_Smoke.Position.closest(Position, SizeRadar*2);
 	smokeGaz = select(0,safe_normalize(Position-smokeGaz),isfinite(smokeGaz)) * select(1,0.1,Mask_Protest_Percent>Mask);
 	
 	float3 fire = spatialLayers.SL_Fire.Position.closest(Position,SizeRadar*1.5);
@@ -307,7 +307,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 //// GESTION TENSION
 
 	////Impact sur les tension par les envenements externe
-	float smokeTension = select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
+	float smokeTension = select(0,dt* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
 	float flashTension = select(0,dt,flashBall.x !=0);
 	float molotovTension = select(0,dt,fire.x !=0);
 	float regainTension = dt*0.01;
