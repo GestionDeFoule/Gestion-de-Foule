@@ -8,6 +8,7 @@ using UnityEngine;
 public class HandlePopcornFXEvent : MonoBehaviour {
 
     PKFxFX fx;
+    public GameObject win;
 
     // Use this for initialization
     void Start () {
@@ -20,7 +21,7 @@ public class HandlePopcornFXEvent : MonoBehaviour {
     {
         Debug.Log(eventName);
         if (eventName == "MoveTarget")
-            fx.SetAttributeSafe("ProtestTarget", -5, 0, 12.5f);
+            win.SetActive(true); ;
     }
 }
 
