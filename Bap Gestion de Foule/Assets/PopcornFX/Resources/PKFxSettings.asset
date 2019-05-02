@@ -17,7 +17,7 @@ MonoBehaviour:
   m_EnableRaycastForCollisions: 0
   m_PopcornPackFxPath: ../PackFx
   m_UnityPackFxPath: /PopcornFXAssets
-  m_RenderingCategory: 0
+  m_RenderingCategory: 1
   m_DebugEffectsBoundingBoxes: 0
   m_MaterialFactory: {fileID: 0}
   m_EnableSoftParticles: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     m_StaticWorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 50, y: 50, z: 50}
-  m_ThreadingCategory: 0
+  m_ThreadingCategory: 1
   m_SingleThreadedExecution: 0
   m_WaitForUpdateOnRenderThread: 0
   m_SplitUpdateInComponents: 0

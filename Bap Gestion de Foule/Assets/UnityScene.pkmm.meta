@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2c00ea02587d4ea43b744af80bf6a14c
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: .pkmm
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 5d5ca25d7c546c34b8cc8d412736d671, type: 3}
