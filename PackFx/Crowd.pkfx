@@ -292,7 +292,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	//// Impact de l\'humeur par des evenement externe pour chaque individu
 	float moodBetweenProtest = select(0,(moodProtest-Mood)*dt*0.02,isfinite(moodProtest)) ;
 	moodBetweenProtest = select(moodBetweenProtest*RandomMoodUp,moodBetweenProtest*RandomMoodDown,moodBetweenProtest<0);
-	float moodWithCRS = select(0,(nbCRS/(nbProtest/2))*dt,isfinite(nbCRS) && isfinite(nbProtest)&&nbProtest!=0);
+	float moodWithCRS = select(0,(nbCRS/nbProtest)*dt/10,isfinite(nbCRS) && isfinite(nbProtest)&&nbProtest!=0);
 	float smokeMood = select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
 	float dogMood = select(0,dt*0.5,dog.x!=0);
 	float flashBallMood = select(0,dt,flashBall.x !=0);
@@ -354,14 +354,16 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 link = spatialLayers.SL_Interact.Position.closest(Position, Size*2, 2);
 	float3 LINK = - select(0,Position-link,isfinite(link) && length(Position-link)>0.2)*2;
 
+	float3 pushCRS = spatialLayers.SL_CRS.Position.closest(Position, Size*1.2, 1);
+	float3 PUSHCRS = select(0,Position-pushCRS,isfinite(pushCRS))*50;
+
 //// MOUVEMENT GLOBAL
 
 	//// Compilation de toutes les notions de mouvements
-	float3 allMove = dog*1.5 + smokeGaz*2 + circling*2 + charge*2 +avoidWall.xyz*avoidWall.w*8 +  desertDir + PUSH + LINK + flashBall + fire + safe_normalize(realTarget)*0.5  ;
+	float3 allMove = dog*1.5 + smokeGaz*2 + circling*2 + charge*2 +avoidWall.xyz*avoidWall.w*8 +  desertDir + PUSH + PUSHCRS + LINK + flashBall + fire + safe_normalize(realTarget)*0.5  ;
 	
 	VelocityField = lerp(allMove*saturate(length(realTarget*0.6)),allMove*1.5,Tension+1);
 	VelocityField = select(VelocityField,PUSH*0.2,sitIn!=0);
-	
 	
 //// GESTION COULEURS INFOS
 
@@ -391,7 +393,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-6.7238421e+000, 4.6737289e-001, 1.2323907e+001);
+	Position = float3(-1.2184935e+001, 4.6719360e-001, 7.4055882e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
