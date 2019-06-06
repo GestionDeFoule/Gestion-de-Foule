@@ -1,4 +1,4 @@
-Version = 1.13.3.48349;
+Version = 1.13.4.53415;
 Generator = EDITOR;
 CParticleEffect	$LOCAL$/Resource
 {
@@ -147,7 +147,6 @@ CParticleAttributeList	$LOCAL$/_GlobalAttributes
 		"$LOCAL$/CParticleAttributeDeclaration_46205408",
 		"$LOCAL$/CParticleAttributeDeclaration_FA4BFF6B",
 		"$LOCAL$/CParticleAttributeDeclaration_DB327BDE",
-		"$LOCAL$/CParticleAttributeDeclaration_D410B8F9",
 		"$LOCAL$/CParticleAttributeDeclaration_1AC88D0A",
 		"$LOCAL$/CParticleAttributeDeclaration_D0CA7CD7",
 		"$LOCAL$/CParticleAttributeDeclaration_D67E6FF7",
@@ -293,8 +292,8 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float moodBetweenProtest = select(0,(moodProtest-Mood)*dt*0.02,isfinite(moodProtest)) ;
 	moodBetweenProtest = select(moodBetweenProtest*RandomMoodUp,moodBetweenProtest*RandomMoodDown,moodBetweenProtest<0);
 	float moodWithCRS = select(0,(nbCRS/nbProtest)*dt/10,isfinite(nbCRS) && isfinite(nbProtest)&&nbProtest!=0);
-	float smokeMood = select(0,dt*0.5* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
-	float dogMood = select(0,dt*0.5,dog.x!=0);
+	float smokeMood = select(0,dt*0.2* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
+	float dogMood = select(0,dt*0.1,dog.x!=0);
 	float flashBallMood = select(0,dt,flashBall.x !=0);
 	float sitInMood = select(0,-dt,sitIn.x!=0);
 	float regainMoodByDistance = select(0,-dt*length(realTarget)*0.01,TimeDesert!=0);
@@ -307,13 +306,14 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 //// GESTION TENSION
 
 	////Impact sur les tension par les envenements externe
-	float smokeTension = select(0,dt* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
+	float crsTension = select(0,dt*0.05,nbCRS>0);
+	float smokeTension = select(0,dt*0.2* select(1,0.1,Mask_Protest_Percent>Mask),smokeGaz.x!=0);
 	float flashTension = select(0,dt,flashBall.x !=0);
 	float molotovTension = select(0,dt,fire.x !=0);
 	float regainTension = dt*0.01;
 	////Ajustement des tension
 	Tension += (-regainTension)*RandomTensUp;
-	Tension += (smokeTension + flashTension + molotovTension )*RandomTensDown;
+	Tension += (smokeTension + flashTension + molotovTension+crsTension )*RandomTensDown;
 	Tension	= clamp(Tension,-1,1);
 	
 //// GESTION DESERTION
@@ -335,9 +335,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 nearCRS = spatialLayers.SL_CRS.Position.closest(Position, SizeRadar);
 	nearCRS = select(posCRS,nearCRS,isfinite(nearCRS));
 	//// Charge selon % Treshold_Mood_Action_Protest et si AccuAngry n\'est pas a 1 (en desertion)
-	float3 charge = select(0,safe_normalize(posCRS+InitialPos-Position),Charge_Protest==1 && Mood>Treshold_Mood_Action_Protest && AccuAngry!=1);
+	float3 charge = select(0,safe_normalize(posCRS+InitialPos-Position),Charge_Protest==1 && Tension>Treshold_Mood_Action_Protest && AccuAngry!=1);
 	//// Circling selon % Treshold_Mood_Action_Protest et si AccuAngry n\'est pas a 1 (en desertion)
-	float3 circling	= select(0,safe_normalize(nearCRS+InitialPos-Position),Circling_Protest==1 && Mood>Treshold_Mood_Action_Protest && AccuAngry!=1);
+	float3 circling	= select(0,safe_normalize(nearCRS+InitialPos-Position),Circling_Protest==1 && Tension>Treshold_Mood_Action_Protest && AccuAngry!=1);
 
 //// GESTION ENVIRONMENT
 
@@ -355,20 +355,21 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_E10EF998
 	float3 LINK = - select(0,Position-link,isfinite(link) && length(Position-link)>0.2)*2;
 
 	float3 pushCRS = spatialLayers.SL_CRS.Position.closest(Position, Size*1.2, 1);
-	float3 PUSHCRS = select(0,Position-pushCRS,isfinite(pushCRS))*50;
+	float3 PUSHCRS = select(0,Position-pushCRS,isfinite(pushCRS))*20;
 
 //// MOUVEMENT GLOBAL
 
 	//// Compilation de toutes les notions de mouvements
-	float3 allMove = dog*1.5 + smokeGaz*2 + circling*2 + charge*2 +avoidWall.xyz*avoidWall.w*8 +  desertDir + PUSH + PUSHCRS + LINK + flashBall + fire + safe_normalize(realTarget)*0.5  ;
+	float3 allMove = dog*1.5 + smokeGaz + circling*2 + charge*2 +avoidWall.xyz*avoidWall.w*8 +  desertDir + PUSH + PUSHCRS + LINK + flashBall + fire + safe_normalize(realTarget)*0.5  ;
 	
-	VelocityField = lerp(allMove*saturate(length(realTarget*0.6)),allMove*1.5,Tension+1);
+	VelocityField = lerp(allMove*saturate(length(realTarget*0.6)),allMove,Tension+1);
 	VelocityField = select(VelocityField,PUSH*0.2,sitIn!=0);
 	
 //// GESTION COULEURS INFOS
+	float dark = select((Mood+1)/2,1,AccuAngry==1);
 
-	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Tension*0.5+0.5),float4(0,0,0,1),AccuAngry)*InfosVisibility;
-	ColorRadar = lerp(float4(0,0,1,0.05),float4(1,1,1,0.05),Mood*0.5+0.5)*InfosVisibility;
+	Color = lerp(lerp(float4(0,1,0,1),float4(1,0,0,1),Tension*0.5+0.5),float4(0,0,0,1),dark)*InfosVisibility;
+	ColorRadar = Color*0.2;
 	
 //// CONTRAINTES POSITION & NORMALISATION VECTEUR DIRECTION
 
@@ -393,7 +394,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-1.2184935e+001, 4.6719360e-001, 7.4055882e+000);
+	Position = float3(-1.7504726e+001, 4.6713626e-001, -6.0713124e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
@@ -539,6 +540,9 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_0FEC68D1
 		"$LOCAL$/CParticleFieldDeclaration_7CD67772",
 		"$LOCAL$/CParticleFieldDeclaration_0FD5F18D",
 		"$LOCAL$/CParticleFieldDeclaration_5AE975A2",
+		"$LOCAL$/CParticleFieldDeclaration_6128E19F",
+		"$LOCAL$/CParticleFieldDeclaration_673D414E",
+		"$LOCAL$/CParticleFieldDeclaration_FE973329",
 	};
 	CustomEvents = 
 	{
@@ -641,6 +645,10 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_8196DD85
 	AxisUp = scene.axisUp();
 	AxisSide = scene.axisSide();
 	SizeRadar = Size * rand(2,8);
+	
+	
+	RandomTensUp = rand(0.5,1.5);
+	RandomTensDown = rand(0.5,1.5);
 }
 ";
 }
@@ -676,7 +684,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 {
 
 	float3 InitialPos = rotate(float3(pow(SLR,0.5),0,0),float3(0,1,0),R*pi*2)*2*(1-CRS_Grouping);
-	float3 Target = CRSTarget.position();
+	float3 Target = CRSTarget.samplePosition();
 	float3 realTarget = Target + InitialPos - Position;
 	
 	float3 posProtest = ProtestTarget.position();
@@ -688,23 +696,42 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	float3 fire = spatialLayers.SL_Fire.Position.closest(Position,SizeRadar*1.5);
 	fire = select(0,safe_normalize(Position-fire),isfinite(fire));
 
-	float4 avoidWall = scene.intersect(Position - OffsetYpos.0x0, rotate(safe_normalize(Target + InitialPos - Position),float3(0,1,0),rand(-pi,pi)*0.5), 1);
+	float3 flashBall = spatialLayers.SL_FlashBall.Position.closest(Position,4);
+	float3 CRS = spatialLayers.SL_CRS.Position.closest(Position,2);
+	flashBall = select(0,safe_normalize(Position-CRS),isfinite(flashBall)&&isfinite(CRS));
+
+//// GESTION TENSION
+
+	float nbProtest = spatialLayers.SL_Protest.neighborCount(Position, SizeRadar);
+	
+	////Impact sur les tension par les envenements externe
+	float ProtestTension = select(0,dt*0.2,nbProtest>0);
+	float flashTension = select(0,dt,flashBall.x !=0);
+	float molotovTension = select(0,dt,fire.x !=0);
+	float regainTension = dt*0.01;
+	////Ajustement des tension
+	Tension += (-regainTension)*RandomTensUp;
+	Tension += (flashTension + molotovTension + ProtestTension )*RandomTensDown;
+	Tension	= clamp(Tension,-1,1);
+
+
+	////Raycast de l\'environment 3d a partir de chaque individu en direction du groupe oppos� + ou - 90�
+	float4 avoidWall = scene.intersect(Position- OffsetYpos.0x0, rotate(safe_normalize(Target + InitialPos - Position),float3(0,1,0),rand(-pi,pi)), 0.6);
 	avoidWall = select(0, avoidWall , isfinite(avoidWall));
 	
-	float3 push = spatialLayers.SL_Interact.Position.closest(Position, Size*1.5, 1);
+	float3 push = spatialLayers.SL_Interact.Position.closest(Position, Size*1.2, 1);
 	float3 link = spatialLayers.SL_Interact.Position.closest(Position, Size*2, 2);
 	float3 PUSH = select(0,Position-push,isfinite(push))*8;
 	float3 LINK = - select(0,Position-link,isfinite(link) && length(Position-link)>0.2)*2;
 
+	float3 pushProtest = spatialLayers.SL_Protest.Position.closest(Position, Size*1.2, 1);
+	float3 PUSHProtest = select(0,Position-pushProtest,isfinite(pushProtest))*20;
 
-	vecTarget += safe_normalize(Target + InitialPos - Position)*dt*4;
-	vecTarget = safe_normalize(vecTarget);
-	float3 smallTurb = lerp(1,Turb_1.sample(Position*4),0.5);
-	float3 pos = vecTarget * smallTurb * (1-0.5*saturate(length(realTarget*0.25)))*2* saturate(0.25*length(Target-Position));
-	float3 allMove = circling + charge + PUSH + LINK + pos + avoidWall.xyz*avoidWall.w*8 + fire;
-	VelocityField = lerp(allMove*saturate(length(realTarget)),allMove,Agitation);
+	float3 allMove = circling + charge + PUSH + LINK+ PUSHProtest + avoidWall.xyz*avoidWall.w*8 + fire+ safe_normalize(realTarget)*0.5;
+	VelocityField = lerp(allMove*saturate(length(realTarget*0.6)),allMove,Tension+1);
 	
-	Color = lerp(float4(0,0,1,1),float4(1,0.25,0.25,1),0)*InfosVisibility;
+	
+	Color = lerp(float4(0,0,1,1),float4(1,0,1,1),Tension*0.5+0.5)*InfosVisibility;
 	ColorRadar = Color*0.2;
 	
 	Position = Position.x0z + OffsetYpos.0x0;
@@ -815,15 +842,6 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_DB327BDE
 	DefaultValueF4 = float4(2.0000000e-002, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	HasMin = true;
 	MaxValueF4 = float4(1.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
-	MaxValueI4 = int4(10, 10, 10, 10);
-}
-CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D410B8F9
-{
-	AttributeName = "Agitation";
-	DefaultValueF4 = float4(1.0000000e+000, 0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
-	HasMin = true;
-	HasMax = true;
-	MaxValueF4 = float4(2.0000000e+000, 1.0000000e+000, 1.0000000e+000, 1.0000000e+000);
 	MaxValueI4 = int4(10, 10, 10, 10);
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_D0CA7CD7
@@ -1507,7 +1525,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_CC0D500F
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_9C5A187E
 {
-	Position = float3(-1.6831060e+001, 1.0968685e-001, 7.3628044e-001);
+	Position = float3(-1.6575634e+001, 1.0968685e-001, -1.4486265e+000);
 	ShapeType = CYLINDER;
 	Radius = 2.0000000e+000;
 	Height = 1.0000000e+000;
@@ -1828,6 +1846,7 @@ CParticleDescriptor	$LOCAL$/CParticleDescriptor_FC43A20A
 		"$LOCAL$/CParticleFieldDeclaration_6774BB01",
 		"$LOCAL$/CParticleFieldDeclaration_DC8B2A5C",
 		"$LOCAL$/CParticleFieldDeclaration_DD727026",
+		"$LOCAL$/CParticleFieldDeclaration_A33BCCA0",
 	};
 	CustomEvents = 
 	{
@@ -1896,8 +1915,9 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_0923FBB0
 	throwMolotov =  select(1,0, Molotov==0);
 	
 	int nbProtest = spatialLayers.SL_Protest.neighborCount(ProtestTarget.samplePosition(), 2);
-	MoveTarget.trigger(nbProtest>4);
-
+	moveTarget = select(0,1,nbProtest>4 && moveTarget == 0);
+	MoveTarget.trigger(moveTarget==1);
+	moveTarget = select(0,1,nbProtest==0);
 }
 ";
 }
@@ -2308,4 +2328,21 @@ CActionFactoryWithChilds	$LOCAL$/Spawner
 CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_DD727026
 {
 	FieldName = "timer";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_6128E19F
+{
+	FieldName = "Tension";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_673D414E
+{
+	FieldName = "RandomTensUp";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_FE973329
+{
+	FieldName = "RandomTensDown";
+}
+CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_A33BCCA0
+{
+	FieldName = "moveTarget";
+	FieldType = int;
 }
