@@ -687,7 +687,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_C379CFE9
 	float3 Target = CRSTarget.samplePosition();
 	float3 realTarget = Target + InitialPos - Position;
 	
-	float3 posProtest = ProtestTarget.position();
+	float3 posProtest = ProtestTarget.samplePosition();
 	float3 nearProtest = spatialLayers.SL_Protest.Position.closest(Position, SizeRadar);
 	nearProtest = select(posProtest,nearProtest,isfinite(nearProtest));
 	float3 charge = select(0,safe_normalize(posProtest+InitialPos-Position),Charge_CRS==1);
@@ -873,7 +873,6 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_6270FEA1
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Gaz
 {
-	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_D2F9C19B";
 }
 CParticleDescriptor	$LOCAL$/CParticleDescriptor_D2F9C19B
@@ -1006,7 +1005,6 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_2274C82B
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Smoke
 {
-	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_1008A4CA";
 	DurationInSeconds = 1.0000000e+001;
 	SpawnCount = 1.0000000e+001;
