@@ -394,7 +394,7 @@ CParticleSamplerShape	$LOCAL$/CParticleSamplerShape_95A22C43
 }
 CShapeDescriptor	$LOCAL$/CShapeDescriptor_D7894EC2
 {
-	Position = float3(-1.7504726e+001, 4.6713626e-001, -6.0713124e+000);
+	Position = float3(-1.1989677e+001, 4.6713626e-001, -2.7235274e+000);
 	BoxDimensions = float3(0.0000000e+000, 0.0000000e+000, 0.0000000e+000);
 	Radius = 0.0000000e+000;
 }
