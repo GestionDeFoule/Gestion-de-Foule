@@ -12,10 +12,17 @@ public class ScenarioController : MonoBehaviour {
 
     public GameObject win;
     public GameObject startimg;
+
     public GameObject molotovimg;
     public GameObject gazimg;
     public GameObject sitimg;
     public GameObject chargeimg;
+
+    public GameObject overlaymolotov;
+    public GameObject overlaygaz;
+    public GameObject overlaysit;
+    public GameObject overlaycharge;
+    
 
     public Transform followTarget;
 
@@ -30,7 +37,7 @@ public class ScenarioController : MonoBehaviour {
         fx = this.GetComponent<PKFxFX>();
         PKFxEventManager.RegisterCustomHandler(OnRaiseEvent);
 
-        Time.timeScale = 0;
+        Invoke("timestart", 0.1f);
 
 	}
 
@@ -43,6 +50,7 @@ public class ScenarioController : MonoBehaviour {
         if ((eventName == "MoveTarget") && bool1 && etape == 1)
         {
             molotovimg.SetActive(true);
+            overlaymolotov.SetActive(true);
             bool1 = false;
             Time.timeScale = 0;
         }
@@ -50,6 +58,7 @@ public class ScenarioController : MonoBehaviour {
         if ((eventName == "MoveTarget") && bool1 && etape == 2)
         {
             sitimg.SetActive(true);
+            overlaysit.SetActive(true);
             bool1 = false;
             Time.timeScale = 0;
         }
@@ -109,12 +118,14 @@ public class ScenarioController : MonoBehaviour {
     public void GazUi()
     {
         gazimg.SetActive(true);
+        overlaycharge.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void ChargeUi()
     {
         chargeimg.SetActive(true);
+        overlaycharge.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -136,6 +147,11 @@ public class ScenarioController : MonoBehaviour {
         sitimg.SetActive(false);
 
         chargeimg.SetActive(false);
+    }
+
+    public void timestart()
+    {
+        Time.timeScale = 0;
     }
 
     //fx pour changer la ProtestTarget
