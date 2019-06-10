@@ -1915,7 +1915,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_0923FBB0
 	int nbProtest = spatialLayers.SL_Protest.neighborCount(ProtestTarget.samplePosition(), 2);
 	moveTarget = select(0,1,nbProtest>4 && moveTarget == 0);
 	MoveTarget.trigger(moveTarget==1);
-	moveTarget = select(0,1,nbProtest==0);
+	moveTarget = select(1,0,nbProtest==0);
 }
 ";
 }
