@@ -53,6 +53,7 @@ public class ScenarioController : MonoBehaviour {
             overlaymolotov.SetActive(true);
             bool1 = false;
             Time.timeScale = 0;
+            etape = 3;
         }
 
         if ((eventName == "MoveTarget") && bool1 && etape == 2)
@@ -88,6 +89,7 @@ public class ScenarioController : MonoBehaviour {
 
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
         bool1 = true;
+        etape = 2;
     }
 
     public void CapaSit()// EN DIXIÈME
@@ -118,7 +120,7 @@ public class ScenarioController : MonoBehaviour {
     public void GazUi()
     {
         gazimg.SetActive(true);
-        overlaycharge.SetActive(true);
+        overlaygaz.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -140,12 +142,16 @@ public class ScenarioController : MonoBehaviour {
         Time.timeScale = 1;
         startimg.SetActive(false);
 
+        overlaymolotov.SetActive(false);
         molotovimg.SetActive(false);
 
+        overlaygaz.SetActive(false);
         gazimg.SetActive(false);
 
+        overlaysit.SetActive(false);
         sitimg.SetActive(false);
 
+        overlaycharge.SetActive(false);
         chargeimg.SetActive(false);
     }
 
