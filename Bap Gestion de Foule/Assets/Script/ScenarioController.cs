@@ -22,6 +22,11 @@ public class ScenarioController : MonoBehaviour {
     public GameObject overlaygaz;
     public GameObject overlaysit;
     public GameObject overlaycharge;
+
+    public GameObject overlaymolotovbt;
+    public GameObject overlaygazbt;
+    public GameObject overlaysitbt;
+    public GameObject overlaychargebt;
     
 
     public Transform followTarget;
@@ -50,6 +55,7 @@ public class ScenarioController : MonoBehaviour {
         if ((eventName == "MoveTarget") && bool1 && etape == 1)
         {
             molotovimg.SetActive(true);
+            overlaymolotovbt.SetActive(false);
             overlaymolotov.SetActive(true);
             bool1 = false;
             Time.timeScale = 0;
@@ -59,6 +65,7 @@ public class ScenarioController : MonoBehaviour {
         if ((eventName == "MoveTarget") && bool1 && etape == 2)
         {
             sitimg.SetActive(true);
+            overlaysitbt.SetActive(false);
             overlaysit.SetActive(true);
             bool1 = false;
             Time.timeScale = 0;
@@ -85,7 +92,7 @@ public class ScenarioController : MonoBehaviour {
 
     public void CapaMaskagaz()// EN SEPTIÈME
     {
-        fx.SetAttributeSafe("Mask_Protest_Percent", 0.5f);
+        fx.SetAttributeSafe("Mask_Protest_Percent", 0.8f);
 
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
         bool1 = true;
@@ -101,7 +108,7 @@ public class ScenarioController : MonoBehaviour {
     public void PoliceCircle()// EN ONZIÈME
     {
         fx.SetAttributeSafe("Circling_CRS", 1);
-        Invoke("ChargeUI", 3);
+        Invoke("ChargeUi", 3);
     }
 
     public void CapaCharge()// EN TREIZIÈME
@@ -120,6 +127,7 @@ public class ScenarioController : MonoBehaviour {
     public void GazUi()
     {
         gazimg.SetActive(true);
+        overlaygazbt.SetActive(false);
         overlaygaz.SetActive(true);
         Time.timeScale = 0;
     }
@@ -127,6 +135,7 @@ public class ScenarioController : MonoBehaviour {
     public void ChargeUi()
     {
         chargeimg.SetActive(true);
+        overlaychargebt.SetActive(false);
         overlaycharge.SetActive(true);
         Time.timeScale = 0;
     }
