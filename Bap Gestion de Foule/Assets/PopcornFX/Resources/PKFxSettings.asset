@@ -38,8 +38,8 @@ MonoBehaviour:
   - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_7BAEC76B;Crowd.pkfx/CParticleRenderer_Billboard_96F194DC;Crowd.pkfx/CParticleRenderer_Billboard_8D76BCF2
     m_GeneratedName: Billboard Color Diffuse Additive (none) /PopcornFXAssets/Textures/Circle.png
       (none) (none) 1
-    m_DefaultVertexBufferSize: 1650
-    m_DefaultIndexBufferSize: 2478
+    m_DefaultVertexBufferSize: 2700
+    m_DefaultIndexBufferSize: 4053
     m_StaticWorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 50, y: 50, z: 50}

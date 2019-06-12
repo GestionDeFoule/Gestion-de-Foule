@@ -12,13 +12,34 @@ public class SkillsManager : MonoBehaviour {
     private Vector3 position;
     [Range(0.0f, 60.0f)]
     public float smooth;
+    public AnimationCurve curve;
 
-    public void Skill1()
+    public void Move()
     {
         if (prefab != null)
             Destroy(prefab);
         prefab = Instantiate(prefabSkill,position,prefabSkill.transform.rotation);
         prefab.transform.localScale = new Vector3(prefab.transform.localScale.x * ScaleFactor, prefab.transform.localScale.y * ScaleFactor, prefab.transform.localScale.z);
+        firstClick = true;
+    }
+
+
+    public void Molo()
+    {
+        if (prefab != null)
+            Destroy(prefab);
+        prefab = Instantiate(prefabSkill, position, prefabSkill.transform.rotation);
+        prefab.transform.localScale = new Vector3(prefab.transform.localScale.x * ScaleFactor, prefab.transform.localScale.y * ScaleFactor, prefab.transform.localScale.z);
+        firstClick = true;
+    }
+
+
+    public void Sit()
+    {
+        if (prefab != null)
+            Destroy(prefab);
+        prefab = Instantiate(prefabSkill, position, prefabSkill.transform.rotation);
+        prefab.transform.localScale = new Vector3(prefab.transform.localScale.x * ScaleFactor*2, prefab.transform.localScale.y * ScaleFactor*2, prefab.transform.localScale.z);
         firstClick = true;
     }
 
@@ -39,7 +60,7 @@ public class SkillsManager : MonoBehaviour {
     void FixedUpdate()
     {
         Vector3 mp = Input.mousePosition;
-        mp.z = Camera.main.transform.position.y;
+        mp.z = curve.Evaluate(mp.y);
         //mp.z = Camera.main.transform.position.magnitude;
         position = Camera.main.ScreenToWorldPoint(mp);
         position.y = PosY;

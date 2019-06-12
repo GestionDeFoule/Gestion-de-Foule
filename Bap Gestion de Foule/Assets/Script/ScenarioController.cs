@@ -116,6 +116,7 @@ public class ScenarioController : MonoBehaviour {
     {
         fx.SetAttributeSafe("Molotov", 1);
         fx.SetAttributeSafe("Charge_CRS", 0);
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
         text.text = "JETS DE MOLOTOVS ET PROJECTILES LORS DE LA MANIFESTATION SUR LES POLICIERS";
     }
     public void GazThrow()
@@ -131,6 +132,7 @@ public class ScenarioController : MonoBehaviour {
         Invoke("BruitMask", 1);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
         sonManif.position = followTarget.position;
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
         text.text = "LA POLICE UTILISE DES BOMBES LACRYMOGÈNES CONTRE LES MANIFESTANTS";
         bool1 = true;
         etape = 2;
@@ -145,6 +147,7 @@ public class ScenarioController : MonoBehaviour {
         SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._SitIn);
         SoundControler._soundControler._sourceManif.volume = 0.2f;
         fx.SetAttributeSafe("Sit_In", 1);
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
         text.text = "LES MANIFESTANTS PROTESTENT PAR UN SIT IN DEVANT LES POLICIERS";
         Invoke("PoliceCircle", 2);
     }
@@ -161,9 +164,10 @@ public class ScenarioController : MonoBehaviour {
         SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._Charge);
         fx.SetAttributeSafe("Charge_Protest", 1);
         fx.SetAttributeSafe("Circling_CRS", 0);
-        followTarget.position += new Vector3(15, 0, 0);
+        followTarget.position += new Vector3(25, 0, 0);
         SetShapeBoxTransform(fx, "CRSTarget", followTarget);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
         text.text = "LES MANIFESTANTS CHARGENT DANS LA FOULE DE POLICIERS - NOMBREUX BLESSÉS";
 
         Invoke("winner", 15);
