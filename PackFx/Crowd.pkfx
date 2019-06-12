@@ -873,6 +873,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_6270FEA1
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Gaz
 {
+	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_D2F9C19B";
 }
 CParticleDescriptor	$LOCAL$/CParticleDescriptor_D2F9C19B
@@ -1005,6 +1006,7 @@ CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_2274C82B
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Smoke
 {
+	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_1008A4CA";
 	DurationInSeconds = 1.0000000e+001;
 	SpawnCount = 1.0000000e+001;
@@ -1772,7 +1774,6 @@ CParticleFieldDeclaration	$LOCAL$/CParticleFieldDeclaration_5AE975A2
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/SitInParticule
 {
-	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_9126940D";
 	SpawnCountMode = TotalParticleCount;
 }
@@ -1795,7 +1796,7 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_42F08D54
 {
 	Life = 20;
 	Color = float4(1.0);
-	Position = -ZoneCapacite.position();
+	Position = -ZoneCapacite.samplePosition();
 }
 ";
 }
@@ -1985,8 +1986,8 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_4262B877
 	Expression = "function void	Eval()
 {
 	float3 launchPosition = spatialLayers.SL_Protest.Position.closest(ZoneCapacite.position(),1000,10);
-	float power = length(ZoneCapacite.position()-launchPosition);
-	float3 throwDir = safe_normalize(ZoneCapacite.position()-launchPosition);
+	float power = length(ZoneCapacite.samplePosition()-launchPosition);
+	float3 throwDir = safe_normalize(ZoneCapacite.samplePosition()-launchPosition);
 	Position=-launchPosition;
 	Life = 10;
 	Size = 0.05;
@@ -2089,7 +2090,6 @@ CCompilerSyntaxNodeExpression	$LOCAL$/CCompilerSyntaxNodeExpression_67745503
 }
 CActionFactoryParticleSpawnerBase	$LOCAL$/Molotov
 {
-	EditorInfosIsBlockMinimized = 0;
 	Descriptor = "$LOCAL$/CParticleDescriptor_4FC66A1E";
 }
 CParticleAttributeDeclaration	$LOCAL$/CParticleAttributeDeclaration_07EDFF34
@@ -2282,6 +2282,7 @@ CActionFactoryParticleSpawnerBase	$LOCAL$/Fire
 CParticleEventDeclaration	$LOCAL$/CParticleEventDeclaration_558105D4
 {
 	EventName = "OnDeath";
+	Broadcast = true;
 	EventAction = "$LOCAL$/Fire";
 }
 CParticleSpatialDescriptor	$LOCAL$/CParticleSpatialDescriptor_9F5A6F27

@@ -27,7 +27,8 @@ public class ScenarioController : MonoBehaviour {
     public GameObject overlaygazbt;
     public GameObject overlaysitbt;
     public GameObject overlaychargebt;
-    
+
+    public Transform sonManif;
 
     public Transform followTarget;
 
@@ -54,69 +55,113 @@ public class ScenarioController : MonoBehaviour {
         Debug.Log(eventName);
         if ((eventName == "MoveTarget") && bool1 && etape == 1)
         {
-            molotovimg.SetActive(true);
-            overlaymolotovbt.SetActive(false);
-            overlaymolotov.SetActive(true);
-            bool1 = false;
-            Time.timeScale = 0;
+            Invoke("MoloCap", 4);
+            fx.SetAttributeSafe("Charge_CRS", 1);
             etape = 3;
+            SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._ChargeTrigger);
         }
 
         if ((eventName == "MoveTarget") && bool1 && etape == 2)
         {
-            sitimg.SetActive(true);
-            overlaysitbt.SetActive(false);
-            overlaysit.SetActive(true);
+            Invoke("SitActive", 15);
             bool1 = false;
-            Time.timeScale = 0;
         }
+        if ((eventName == "MoveTarget") && bool1 && etape == 4)
+        {
+            followTarget.position -= new Vector3(7, 0, 0);
+            bool1 = false;
+        }
+        if (eventName == "OnDeath")
+            SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._Molotov);
     }
-    
 
-    
+    private void MoloCap()
+    {
+        molotovimg.SetActive(true);
+        overlaymolotovbt.SetActive(false);
+        overlaymolotov.SetActive(true);
+        bool1 = false;
+        Time.timeScale = 0;
+    }
+
+    private void SitActive()
+    {
+        sitimg.SetActive(true);
+        overlaysitbt.SetActive(false);
+        overlaysit.SetActive(true);
+        Time.timeScale = 0;
+        bool1 = true;
+        etape = 4;
+    }
+
+
+
 
     ///////////////////CAPACITÉS////////////////////////
     ////////////////////////////////////////////////////
-    
+
     public void CapaMolo()// EN CINQUIÈME
     {
-        fx.SetAttributeSafe("Molotov", 1);
+        SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._MolotovLightning);
+        Invoke("Molotov", 1.7f);
+        
 
-        Invoke("GazThrow", 4.5f);
-        Invoke("GazUi", 7.5f);
+        Invoke("GazThrow", 9.5f);
+        Invoke("GazUi", 12.5f);
+    }
+    public void Molotov()
+    {
+        fx.SetAttributeSafe("Molotov", 1);
+        fx.SetAttributeSafe("Charge_CRS", 0);
     }
     public void GazThrow()
     {
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._GazMaskPrevention);
         fx.SetAttributeSafe("Gaz_CRS", 1);
     }
 
     public void CapaMaskagaz()// EN SEPTIÈME
     {
-        fx.SetAttributeSafe("Mask_Protest_Percent", 0.8f);
-
+        SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._Gaz);
+        fx.SetAttributeSafe("Mask_Protest_Percent", 0.5f);
+        Invoke("BruitMask", 1);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
+        sonManif.position = followTarget.position;
         bool1 = true;
         etape = 2;
+    }
+    public void BruitMask()
+    {
+        SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._GazMask);
     }
 
     public void CapaSit()// EN DIXIÈME
     {
+        SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._SitIn);
+        SoundControler._soundControler._sourceManif.volume = 0.2f;
         fx.SetAttributeSafe("Sit_In", 1);
 
         Invoke("PoliceCircle", 2);
     }
     public void PoliceCircle()// EN ONZIÈME
     {
+        SoundControler._soundControler._sourceManif.volume = 0.5f;
+        SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._ChargeTrigger);
         fx.SetAttributeSafe("Circling_CRS", 1);
-        Invoke("ChargeUi", 3);
+        Invoke("ChargeUi", 15);
     }
 
     public void CapaCharge()// EN TREIZIÈME
     {
+        SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._Charge);
         fx.SetAttributeSafe("Charge_Protest", 1);
         fx.SetAttributeSafe("Circling_CRS", 0);
+        followTarget.position += new Vector3(15, 0, 0);
+        SetShapeBoxTransform(fx, "CRSTarget", followTarget);
+        SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
 
-        Invoke("winner", 3);
+
+        Invoke("winner", 15);
     }
 
 

@@ -6,27 +6,24 @@ public class CameraBehaviour : MonoBehaviour {
 
     public float panSpeed = 20f;
     private float panBorderThickness = 20f; // taille des bordures d'écran
-    public Vector2 panLimitVertical; // limit de mouvement de la caméra
-    public Vector2 panLimitHorizontal;
+    public Vector2 panLimitVerticalMinZoom; // limit de mouvement de la caméra au zoom min
+    public Vector2 panLimitHorizontalMinZoom;
+    public Vector2 panLimitVerticalMaxZoom; // limit de mouvement de la caméra au zoom max
+    public Vector2 panLimitHorizontalMaxZoom;
+    private Vector2 panLimitVerticalCurrent; // limit de mouvement de la caméra a l'instant t
+    private Vector2 panLimitHorizontalCurrent;
     private float startY;
 
-    private float scrollSpeed = 20f;
+    public float scrollSpeed = 20f;
     public float maxY = 20f;
     public float minY = -20f;
 
-    [Range(0.0f, 1.0f)]
-    public float smoothFactorXZ = 0.5f;
-    [Range(0.0f, 1.0f)]
-    public float smoothFactorY = 0.5f;
-
-    private Vector3 cameraPos;
-
-    public GameObject tacticalMap;
+    public PKFxFX fx;
+    private bool tactical;
 
     private void Awake()
     {
-        cameraPos = transform.position;
-        startY = cameraPos.y;
+
     }
 
     void FixedUpdate () {
@@ -53,42 +50,49 @@ public class CameraBehaviour : MonoBehaviour {
             pos.x -= panSpeed * Time.deltaTime; 
         }
 
-        if (cameraPos.y >= maxY-5 && tacticalMap.activeSelf == false)
+        if (pos.y >= maxY-20 && tactical == false)
         {
-            tacticalMap.SetActive(true);
+            fx.SetAttributeSafe("ActivateVoxelCharacter", 0);
+            fx.SetAttributeSafe("InfosVisibility", 1f);
+            tactical = true;
         }
 
-        if (cameraPos.y < maxY-5 && tacticalMap.activeSelf == true)
+        if (pos.y < maxY-20 && tactical == true)
         {
-            tacticalMap.SetActive(false);
+            fx.SetAttributeSafe("ActivateVoxelCharacter", 1);
+            fx.SetAttributeSafe("InfosVisibility", 0f);
+            tactical = false;
         }
 
         UpdateLimit();
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
+        pos.y -= scroll * scrollSpeed * Time.deltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, panLimitHorizontal.x, panLimitHorizontal.y);
+        pos.x = Mathf.Clamp(pos.x, panLimitHorizontalCurrent.x, panLimitHorizontalCurrent.y);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos.z = Mathf.Clamp(pos.z, panLimitVertical.x, panLimitVertical.y);
+        pos.z = Mathf.Clamp(pos.z, panLimitVerticalCurrent.x, panLimitVerticalCurrent.y);
 
-        cameraPos.x = Mathf.Lerp(cameraPos.x, pos.x, smoothFactorXZ);
-        cameraPos.z = Mathf.Lerp(cameraPos.z, pos.z, smoothFactorXZ);
-        cameraPos.y = Mathf.Lerp(cameraPos.y, pos.y, smoothFactorY);
-
-        transform.position = cameraPos;
+        transform.position = pos;
     }
 
     private void UpdateLimit() //augmente/diminue les limites de la camera en cas de zoom/dezoom
     {
-        float difY = startY - cameraPos.y;
-        if (difY != 0)
+        panLimitHorizontalCurrent = Vector2.Lerp(panLimitHorizontalMaxZoom, panLimitHorizontalMinZoom, (transform.position.y-minY) / (maxY-minY));
+        panLimitVerticalCurrent = Vector2.Lerp(panLimitVerticalMaxZoom, panLimitVerticalMinZoom, (transform.position.y-minY) / (maxY-minY));
+    }
+
+    public void MapBut()
+    {
+        if (tactical)
         {
-            float ratio;
-            ratio = (float) Screen.height/Screen.width;
-            panLimitVertical += new Vector2(-difY*ratio , difY *ratio);
-            panLimitHorizontal += new Vector2(-difY, difY);
-            startY = cameraPos.y;
+            transform.position = new Vector3(transform.position.x, minY, transform.position.x);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, maxY, transform.position.x);
         }
     }
+
+
 }
