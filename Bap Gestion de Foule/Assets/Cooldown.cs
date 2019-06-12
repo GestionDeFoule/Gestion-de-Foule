@@ -10,38 +10,39 @@ public class Cooldown : MonoBehaviour
     private float nextAbilityTime = 0;
 
     public Image image;
+    private float timer;
 
-    
+    public Button button;
+
+
 
     // Use this for initialization
     void Start()
     {
         image.fillAmount = 0;
-        InvokeRepeating("ActivateCooldown", nextAbilityTime, cooldownTime);
+        timer = 0;
+        //InvokeRepeating("ActivateCooldown", nextAbilityTime, cooldownTime);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+            button.interactable = true;
+
+        image.fillAmount = timer / cooldownTime;
 
     }
 
     public void ActivateCooldown()
     {
-        image.fillAmount = 1;
-
-        
-        
-        if (Time.time > nextAbilityTime)
-        {
-            Debug.Log("Ability pressed, now on cooldown.");
-            nextAbilityTime = Time.time + cooldownTime;
-                //Il faut convertir la valeur en % vu que le fill amount est compris entre 0 et 1 :
-            float percentNextAbilityTime = nextAbilityTime / 100;
-            image.fillAmount = percentNextAbilityTime;
-            image.fillAmount--;
-        }
+        timer = cooldownTime;
+        button.interactable = false;
 
     }
 
