@@ -15,7 +15,7 @@ MonoBehaviour:
   m_TimeMultiplier: 1
   m_EnableFileLog: 1
   m_EnableRaycastForCollisions: 0
-  m_PopcornPackFxPath: ../PackFx
+  m_PopcornPackFxPath: 
   m_UnityPackFxPath: /PopcornFXAssets
   m_RenderingCategory: 0
   m_DebugEffectsBoundingBoxes: 0
@@ -26,40 +26,8 @@ MonoBehaviour:
   m_AutomaticMeshResizing: 1
   m_VertexBufferSizeMultiplicator: 0.5
   m_IndexBufferSizeMultiplicator: 0.5
-  m_MeshesDefaultSize:
-  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_9136D2F4;Crowd.pkfx/CParticleRenderer_Billboard_F587BE4B;Crowd.pkfx/CParticleRenderer_Billboard_2DA731EC;Crowd.pkfx/CParticleRenderer_Billboard_60415AAF;Crowd.pkfx/CParticleRenderer_Billboard_5036E488;Crowd.pkfx/CParticleRenderer_Billboard_D14E7475;Crowd.pkfx/CParticleRenderer_Billboard_72602439;Crowd.pkfx/CParticleRenderer_Billboard_512BBCBA
-    m_GeneratedName: Billboard Color Diffuse AlphaBlend (none) /PopcornFXAssets/Textures/BallDiffuse.png
-      (none) (none) 1
-    m_DefaultVertexBufferSize: 9600
-    m_DefaultIndexBufferSize: 14403
-    m_StaticWorldBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 50, y: 50, z: 50}
-  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_7BAEC76B;Crowd.pkfx/CParticleRenderer_Billboard_96F194DC;Crowd.pkfx/CParticleRenderer_Billboard_8D76BCF2
-    m_GeneratedName: Billboard Color Diffuse Additive (none) /PopcornFXAssets/Textures/Circle.png
-      (none) (none) 1
-    m_DefaultVertexBufferSize: 9600
-    m_DefaultIndexBufferSize: 14403
-    m_StaticWorldBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 50, y: 50, z: 50}
-  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Billboard_85A7C5B9;Crowd.pkfx/CParticleRenderer_Billboard_BCDA84F6;Crowd.pkfx/CParticleRenderer_Billboard_F0E3FEEF
-    m_GeneratedName: Billboard Color Diffuse Additive (none) (none) (none) (none)
-      1
-    m_DefaultVertexBufferSize: 12
-    m_DefaultIndexBufferSize: 21
-    m_StaticWorldBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 50, y: 50, z: 50}
-  - m_EffectNames: Crowd.pkfx/CParticleRenderer_Ribbon_B8A95F8E;Crowd.pkfx/CParticleRenderer_Ribbon_181328E1;Crowd.pkfx/CParticleRenderer_Ribbon_6E5C24E5
-    m_GeneratedName: Ribbon Color Diffuse Additive (none) /PopcornFXAssets/Textures/Circle.png
-      (none) (none) 1
-    m_DefaultVertexBufferSize: 894
-    m_DefaultIndexBufferSize: 1344
-    m_StaticWorldBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 50, y: 50, z: 50}
-  m_ThreadingCategory: 1
+  m_MeshesDefaultSize: []
+  m_ThreadingCategory: 0
   m_SingleThreadedExecution: 0
   m_WaitForUpdateOnRenderThread: 0
   m_SplitUpdateInComponents: 0
