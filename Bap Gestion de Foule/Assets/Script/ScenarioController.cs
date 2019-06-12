@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScenarioController : MonoBehaviour {
 
@@ -31,6 +32,8 @@ public class ScenarioController : MonoBehaviour {
     public Transform sonManif;
 
     public Transform followTarget;
+
+    public Text text;
 
     public bool bool1 = true;
     public int etape = 1;
@@ -113,6 +116,7 @@ public class ScenarioController : MonoBehaviour {
     {
         fx.SetAttributeSafe("Molotov", 1);
         fx.SetAttributeSafe("Charge_CRS", 0);
+        text.text = "JETS DE MOLOTOVS ET PROJECTILES LORS DE LA MANIFESTATION SUR LES POLICIERS";
     }
     public void GazThrow()
     {
@@ -127,6 +131,7 @@ public class ScenarioController : MonoBehaviour {
         Invoke("BruitMask", 1);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
         sonManif.position = followTarget.position;
+        text.text = "LA POLICE UTILISE DES BOMBES LACRYMOGÈNES CONTRE LES MANIFESTANTS";
         bool1 = true;
         etape = 2;
     }
@@ -140,7 +145,7 @@ public class ScenarioController : MonoBehaviour {
         SoundControler._soundControler.PlaySoundManif(SoundControler._soundControler._SitIn);
         SoundControler._soundControler._sourceManif.volume = 0.2f;
         fx.SetAttributeSafe("Sit_In", 1);
-
+        text.text = "LES MANIFESTANTS PROTESTENT PAR UN SIT IN DEVANT LES POLICIERS";
         Invoke("PoliceCircle", 2);
     }
     public void PoliceCircle()// EN ONZIÈME
@@ -159,7 +164,7 @@ public class ScenarioController : MonoBehaviour {
         followTarget.position += new Vector3(15, 0, 0);
         SetShapeBoxTransform(fx, "CRSTarget", followTarget);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
-
+        text.text = "LES MANIFESTANTS CHARGENT DANS LA FOULE DE POLICIERS - NOMBREUX BLESSÉS";
 
         Invoke("winner", 15);
     }
@@ -212,6 +217,11 @@ public class ScenarioController : MonoBehaviour {
     public void timestart()
     {
         Time.timeScale = 0;
+    }
+
+    public void timego()
+    {
+        Time.timeScale = 1;
     }
 
     //fx pour changer la ProtestTarget
