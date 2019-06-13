@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("HUD_Test");
+        SceneManager.LoadScene("LD_POC");
 
     }
     

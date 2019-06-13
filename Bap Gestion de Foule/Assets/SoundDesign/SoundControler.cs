@@ -37,7 +37,7 @@ public class SoundControler : MonoBehaviour {
 
     public void PlaySound(AudioClip sound)
     {
-        _source.PlayOneShot(sound,0.2f);
+        _source.PlayOneShot(sound,0.1f);
     }
 
     public void PlaySoundManif(AudioClip sound)

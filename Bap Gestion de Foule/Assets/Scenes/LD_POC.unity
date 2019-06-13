@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4312,6 +4312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167383869}
+  - component: {fileID: 167383870}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -4342,6 +4343,17 @@ RectTransform:
   m_AnchoredPosition: {x: -757, y: 323}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &167383870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167383868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6553d2e97926d204b9a9244254784bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &167461906
 Prefab:
   m_ObjectHideFlags: 0
@@ -10042,7 +10054,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390486389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &390486389
@@ -22715,7 +22738,7 @@ MonoBehaviour:
       m_Position: {x: -1.31, y: -1, z: 12.56}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
       m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
+    m_Dimensions: {x: 0, y: 0, z: 0}
     m_Mesh: {fileID: 0}
     m_MeshFilter: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
@@ -22870,7 +22893,7 @@ MonoBehaviour:
       m_Position: {x: 8.99, y: -1, z: 12.57}
       m_Rotation: {x: 0, y: 0, z: 0, w: 1}
       m_Scale: {x: 1, y: 1, z: 1}
-    m_Dimensions: {x: 1, y: 1, z: 1}
+    m_Dimensions: {x: 0.1, y: 0.1, z: 0.1}
     m_Mesh: {fileID: 0}
     m_MeshFilter: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
@@ -35827,7 +35850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 167383870}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -43634,7 +43657,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1741001822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.25, y: -1, z: 12.63}
+  m_LocalPosition: {x: 9.28, y: -1, z: 12.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46842,7 +46865,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 167383870}
         m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:

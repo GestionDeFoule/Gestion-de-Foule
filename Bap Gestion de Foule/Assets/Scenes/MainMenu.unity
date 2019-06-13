@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1469,16 +1469,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2854d99db39ba084d8ce86c91c9a9917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alarme: {fileID: 0}
-  _ambianceGuerre: {fileID: 0}
-  _bomb: {fileID: 0}
-  _electricite: {fileID: 0}
-  _fireShot: {fileID: 0}
-  _fireShot2: {fileID: 0}
-  _moteurTank: {fileID: 0}
-  _reload: {fileID: 0}
-  _reparation: {fileID: 0}
-  _music: {fileID: 0}
+  _ChargeTrigger: {fileID: 0}
+  _GazMask: {fileID: 0}
+  _MolotovLightning: {fileID: 0}
+  _SitIn: {fileID: 0}
+  _Charge: {fileID: 0}
+  _GazMaskPrevention: {fileID: 0}
+  _Molotov: {fileID: 0}
+  _FlashBall: {fileID: 0}
+  _Gaz: {fileID: 0}
+  _News: {fileID: 0}
+  _music: {fileID: 8300000, guid: 87d6fad2b5963d94fbbbe596d12e6937, type: 3}
+  _sourceManif: {fileID: 0}
+  _sourceCRS: {fileID: 0}
 --- !u!82 &1697437807
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1488,7 +1491,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 87d6fad2b5963d94fbbbe596d12e6937, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

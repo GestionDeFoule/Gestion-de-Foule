@@ -7,10 +7,10 @@ public class Cooldown : MonoBehaviour
 {
     public float cooldownTime = 5;
 
-    private float nextAbilityTime = 0;
 
     public Image image;
     private float timer;
+    private bool isStarted;
 
     public Button button;
 
@@ -32,8 +32,11 @@ public class Cooldown : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else
+        else if (isStarted)
+        {
             button.interactable = true;
+            isStarted = false;
+        }
 
         image.fillAmount = timer / cooldownTime;
 
@@ -43,7 +46,7 @@ public class Cooldown : MonoBehaviour
     {
         timer = cooldownTime;
         button.interactable = false;
-
+        isStarted = true;
     }
 
 }

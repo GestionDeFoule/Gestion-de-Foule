@@ -29,6 +29,11 @@ public class ScenarioController : MonoBehaviour {
     public GameObject overlaysitbt;
     public GameObject overlaychargebt;
 
+    private Cooldown MolotovCd;
+    private Cooldown GazCd;
+    private Cooldown SitCd;
+    private Cooldown ChargeCd;
+
     public Transform sonManif;
 
     public Transform followTarget;
@@ -36,6 +41,7 @@ public class ScenarioController : MonoBehaviour {
     public Text text;
 
     public bool bool1 = true;
+    bool sitFirst = true;
     public int etape = 1;
 
     /////////////////////////////////////////////////
@@ -43,7 +49,18 @@ public class ScenarioController : MonoBehaviour {
     // Use this for initialization
     void Start () //// EN PREMIER
     {
+        //Find All Component
+        MolotovCd = overlaymolotovbt.GetComponent<Cooldown>();
+        GazCd = overlaygazbt.GetComponent<Cooldown>();
+        SitCd = overlaysitbt.GetComponent<Cooldown>();
+        ChargeCd = overlaychargebt.GetComponent<Cooldown>();
         fx = this.GetComponent<PKFxFX>();
+
+        //
+        MolotovCd.button.interactable = false;
+        GazCd.button.interactable = false;
+        SitCd.button.interactable = false;
+        ChargeCd.button.interactable = false;
         PKFxEventManager.RegisterCustomHandler(OnRaiseEvent);
 
         Invoke("timestart", 0.1f);
@@ -58,7 +75,7 @@ public class ScenarioController : MonoBehaviour {
         Debug.Log(eventName);
         if ((eventName == "MoveTarget") && bool1 && etape == 1)
         {
-            Invoke("MoloCap", 4);
+            Invoke("MoloCap", 4); 
             fx.SetAttributeSafe("Charge_CRS", 1);
             etape = 3;
             SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._ChargeTrigger);
@@ -66,7 +83,7 @@ public class ScenarioController : MonoBehaviour {
 
         if ((eventName == "MoveTarget") && bool1 && etape == 2)
         {
-            Invoke("SitActive", 15);
+            Invoke("SitActive", 20);
             bool1 = false;
         }
         if ((eventName == "MoveTarget") && bool1 && etape == 4)
@@ -78,23 +95,27 @@ public class ScenarioController : MonoBehaviour {
             SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._Molotov);
     }
 
-    private void MoloCap()
+    private void MoloCap() //TROISIEME BIS
     {
         molotovimg.SetActive(true);
-        overlaymolotovbt.SetActive(false);
+        MolotovCd.button.interactable = true;
         overlaymolotov.SetActive(true);
         bool1 = false;
         Time.timeScale = 0;
     }
 
-    private void SitActive()
+    private void SitActive() //HUITIEME BIS
     {
-        sitimg.SetActive(true);
-        overlaysitbt.SetActive(false);
-        overlaysit.SetActive(true);
-        Time.timeScale = 0;
-        bool1 = true;
-        etape = 4;
+        if (sitFirst)
+        {
+            sitimg.SetActive(true);
+            SitCd.button.interactable = true;
+            overlaysit.SetActive(true);
+            Time.timeScale = 0;
+            bool1 = true;
+            etape = 4;
+            sitFirst = false;
+        }
     }
 
 
@@ -112,14 +133,14 @@ public class ScenarioController : MonoBehaviour {
         Invoke("GazThrow", 9.5f);
         Invoke("GazUi", 12.5f);
     }
-    public void Molotov()
+    public void Molotov()//CINQUIEME BIS
     {
         fx.SetAttributeSafe("Molotov", 1);
         fx.SetAttributeSafe("Charge_CRS", 0);
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
         text.text = "JETS DE MOLOTOVS ET PROJECTILES LORS DE LA MANIFESTATION SUR LES POLICIERS";
     }
-    public void GazThrow()
+    public void GazThrow()//CINQUIEME BIS BIS
     {
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._GazMaskPrevention);
         fx.SetAttributeSafe("Gaz_CRS", 1);
@@ -136,6 +157,7 @@ public class ScenarioController : MonoBehaviour {
         text.text = "LA POLICE UTILISE DES BOMBES LACRYMOGÈNES CONTRE LES MANIFESTANTS";
         bool1 = true;
         etape = 2;
+        Invoke("SitActive", 40);
     }
     public void BruitMask()
     {
@@ -156,7 +178,7 @@ public class ScenarioController : MonoBehaviour {
         SoundControler._soundControler._sourceManif.volume = 0.5f;
         SoundControler._soundControler.PlaySoundCRS(SoundControler._soundControler._ChargeTrigger);
         fx.SetAttributeSafe("Circling_CRS", 1);
-        Invoke("ChargeUi", 15);
+        Invoke("ChargeUi", 20);
     }
 
     public void CapaCharge()// EN TREIZIÈME
@@ -181,7 +203,7 @@ public class ScenarioController : MonoBehaviour {
     public void GazUi()
     {
         gazimg.SetActive(true);
-        overlaygazbt.SetActive(false);
+        GazCd.button.interactable = true;
         overlaygaz.SetActive(true);
         Time.timeScale = 0;
     }
@@ -189,6 +211,7 @@ public class ScenarioController : MonoBehaviour {
     public void ChargeUi()
     {
         chargeimg.SetActive(true);
+        ChargeCd.button.interactable = true;
         overlaychargebt.SetActive(false);
         overlaycharge.SetActive(true);
         Time.timeScale = 0;
@@ -232,6 +255,6 @@ public class ScenarioController : MonoBehaviour {
     public static void SetShapeBoxTransform(PKFxFX fx, string samplerID, Transform transform)
     {
         PKFxFxAsset.ShapeTransform shapeTransform = new PKFxFxAsset.ShapeTransform(transform.position, transform.rotation, transform.lossyScale);
-        fx.SetSamplerSafe(new PKFxFX.Sampler(samplerID, new PKFxFX.SamplerDescShapeBox(Vector3.one, shapeTransform)));
+        fx.SetSamplerSafe(new PKFxFX.Sampler(samplerID, new PKFxFX.SamplerDescShapeBox(Vector3.zero, shapeTransform)));
     }
 }
