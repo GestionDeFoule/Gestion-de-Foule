@@ -138,7 +138,7 @@ public class ScenarioController : MonoBehaviour {
         fx.SetAttributeSafe("Molotov", 1);
         fx.SetAttributeSafe("Charge_CRS", 0);
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
-        text.text = "JETS DE MOLOTOVS ET PROJECTILES LORS DE LA MANIFESTATION SUR LES POLICIERS";
+        text.text = "AGRESSIVES PROTESTERS ARE THROWING MOLOTOV ON CRS";
     }
     public void GazThrow()//CINQUIEME BIS BIS
     {
@@ -154,7 +154,7 @@ public class ScenarioController : MonoBehaviour {
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
         sonManif.position = followTarget.position;
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
-        text.text = "LA POLICE UTILISE DES BOMBES LACRYMOGÈNES CONTRE LES MANIFESTANTS";
+        text.text = "THE POLICEMEN DISPERSE THE CROWD BY THROWING TEARGASES";
         bool1 = true;
         etape = 2;
         Invoke("SitActive", 40);
@@ -170,7 +170,7 @@ public class ScenarioController : MonoBehaviour {
         SoundControler._soundControler._sourceManif.volume = 0.2f;
         fx.SetAttributeSafe("Sit_In", 1);
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
-        text.text = "LES MANIFESTANTS PROTESTENT PAR UN SIT IN DEVANT LES POLICIERS";
+        text.text = "THE PROTESTERS ARE SITTING AND CONFRONTING POLICE IN PACIFIC WAY";
         Invoke("PoliceCircle", 2);
     }
     public void PoliceCircle()// EN ONZIÈME
@@ -189,8 +189,9 @@ public class ScenarioController : MonoBehaviour {
         followTarget.position += new Vector3(25, 0, 0);
         SetShapeBoxTransform(fx, "CRSTarget", followTarget);
         SetShapeBoxTransform(fx, "ProtestTarget", followTarget);
+        sonManif.position = followTarget.position;
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._News);
-        text.text = "LES MANIFESTANTS CHARGENT DANS LA FOULE DE POLICIERS - NOMBREUX BLESSÉS";
+        text.text = "SOME PROTESTERS ARE CHARGING THE CRS CAUSING NUMEROUS INJURIES";
 
         Invoke("winner", 15);
     }

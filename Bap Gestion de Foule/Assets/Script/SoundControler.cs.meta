@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 2854d99db39ba084d8ce86c91c9a9917
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _ChargeTrigger: {fileID: 8300000, guid: 28f3f7a925e2d974c832089fd02d00e7, type: 3}
+  - _GazMask: {fileID: 8300000, guid: 6b7d334364b52184aa65dd3cd206323e, type: 3}
+  - _MolotovLightning: {fileID: 8300000, guid: 18e7b3cb240ffb14f87eb196f033e956, type: 3}
+  - _SitIn: {fileID: 8300000, guid: 7fc3543c582d8784eb04a87c07a6fde1, type: 3}
+  - _Charge: {fileID: 8300000, guid: e5246b9b344930248b01196abae01c90, type: 3}
+  - _GazMaskPrevention: {fileID: 8300000, guid: 031d64be47de668469a29ea441086a0e,
+      type: 3}
+  - _Molotov: {fileID: 8300000, guid: 50f6b6a780aee074185ace44bc971726, type: 3}
+  - _FlashBall: {fileID: 8300000, guid: 9804a155e65641748991ebbb340abe1b, type: 3}
+  - _Gaz: {fileID: 8300000, guid: b867912f09a434f469c96c6e0d7603c8, type: 3}
+  - _News: {fileID: 8300000, guid: 6214fa181be021d4eb0603a29e63af8e, type: 3}
+  - _music: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

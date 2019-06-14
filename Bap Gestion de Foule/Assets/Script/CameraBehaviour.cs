@@ -12,14 +12,13 @@ public class CameraBehaviour : MonoBehaviour {
     public Vector2 panLimitHorizontalMaxZoom;
     private Vector2 panLimitVerticalCurrent; // limit de mouvement de la caméra a l'instant t
     private Vector2 panLimitHorizontalCurrent;
-    private float startY;
 
     public float scrollSpeed = 20f;
     public float maxY = 20f;
-    public float minY = -20f;
+    public float minY = 0;
 
     public PKFxFX fx;
-    private bool tactical;
+    private bool isTactical;
 
     private void Awake()
     {
@@ -50,26 +49,26 @@ public class CameraBehaviour : MonoBehaviour {
             pos.x -= panSpeed * Time.deltaTime; 
         }
 
-        if (pos.y >= maxY-20 && tactical == false)
+        if (pos.y >= maxY-20 && isTactical == false)
         {
             fx.SetAttributeSafe("ActivateVoxelCharacter", 0);
             fx.SetAttributeSafe("InfosVisibility", 1f);
-            tactical = true;
+            isTactical = true;
         }
 
-        if (pos.y < maxY-20 && tactical == true)
+        if (pos.y < maxY-20 && isTactical == true)
         {
             fx.SetAttributeSafe("ActivateVoxelCharacter", 1);
             fx.SetAttributeSafe("InfosVisibility", 0f);
-            tactical = false;
+            isTactical = false;
         }
 
-        UpdateLimit();
+        UpdateLimit();  //augmente/diminue les limites de la camera en cas de zoom/dezoom
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         pos.y -= scroll * scrollSpeed * Time.deltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, panLimitHorizontalCurrent.x, panLimitHorizontalCurrent.y);
+        pos.x = Mathf.Clamp(pos.x, panLimitHorizontalCurrent.x, panLimitHorizontalCurrent.y); //Limite les mouvements de la camera
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = Mathf.Clamp(pos.z, panLimitVerticalCurrent.x, panLimitVerticalCurrent.y);
 
@@ -82,9 +81,9 @@ public class CameraBehaviour : MonoBehaviour {
         panLimitVerticalCurrent = Vector2.Lerp(panLimitVerticalMaxZoom, panLimitVerticalMinZoom, (transform.position.y-minY) / (maxY-minY));
     }
 
-    public void MapBut()
+    public void MapBut()  //Quand on appuit sur le bouton de la map
     {
-        if (tactical)
+        if (isTactical)  
         {
             transform.position = new Vector3(transform.position.x, minY, transform.position.x);
         }

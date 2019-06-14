@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24429,7 +24429,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b876ebfe0c4fcd44aa14c88d50f310b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1978f5720905e048883da52d2a955ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -41478,7 +41478,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fa5f47f3e60b3ca47afda854e9d724b6, type: 3}
+  m_Sprite: {fileID: 21300002, guid: a71ac7d9aa741d64093b603927cfa2a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -50532,8 +50532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "MANIFESTATION DU 15 JUILLET 2019 - SUIVI EN DIRECT DES \xC9V\xC9NEMENTS
-    - LA POLICE SOUS TENSION"
+  m_Text: BROADCAST OF THE EVENEMENT - POLICEMAN UNDER PRESSURE
 --- !u!222 &1977887774
 CanvasRenderer:
   m_ObjectHideFlags: 0
